@@ -11,7 +11,9 @@ module.exports = {
       twitter: `kylemathews`,
     },
   },
+  graphqlTypegen: true,
   plugins: [
+    'gatsby-plugin-postcss',
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
