@@ -3562,6 +3562,11 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: st
 
 type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
 
+type NotFoundQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type NotFoundQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null } | null } | null };
+
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
