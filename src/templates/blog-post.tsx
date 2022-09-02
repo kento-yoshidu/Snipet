@@ -4,29 +4,35 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const BlogPostTemplate = ({
-  data: { previous, next, site, markdownRemark: post },
-  location,
-}) => {
-  const siteTitle = site.siteMetadata?.title || `Title`
+const BlogPostTemplate = ({ data, location }: { data: Queries.BlogPostBySlugQuery, location: string }) => {
+
+  const { markdownRemark } = data
+
+  console.log(markdownRemark);
+
+  // const siteTitle = data.site.siteMetadata?.title || `Title`
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout>
+
+      <h1>blog-post</h1>
       <article
         className="blog-post"
         itemScope
         itemType="http://schema.org/Article"
       >
+        <section
+          dangerouslySetInnerHTML={{ __html: markdownRemark?.html }}
+          itemProp="articleBody"
+        />
+      </article>
+    {/*
         <header>
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
           <p>{post.frontmatter.date}</p>
         </header>
-        <section
-          dangerouslySetInnerHTML={{ __html: post.html }}
-          itemProp="articleBody"
-        />
         <hr />
-      </article>
+        
       <nav className="blog-post-nav">
         <ul
           style={{
@@ -53,6 +59,7 @@ const BlogPostTemplate = ({
           </li>
         </ul>
       </nav>
+            */}
     </Layout>
   )
 }
