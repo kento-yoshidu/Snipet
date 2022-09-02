@@ -1,40 +1,40 @@
 import type { GatsbyNode } from "gatsby"
 import path from "path"
 
-const { createFilePath } = require(`gatsby-source-filesystem`)
+import { createFilePath } from "gatsby-source-filesystem"
 
 const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
-  const blogPost = path.resolve(`./src/templates/blog-post.tsx`)
+  const blogPost = path.resolve("./src/templates/blog-post.tsx")
 
   const result = await graphql(
-    `
-      {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: ASC }
-          limit: 1000
-        ) {
-          nodes {
-            id
-            fields {
-              slug
+      `
+        {
+          allMarkdownRemark(
+            sort: { fields: [frontmatter___date], order: ASC }
+            limit: 1000
+          ) {
+            nodes {
+              id
+              fields {
+                slug
+              }
             }
           }
         }
-      }
-    `
+      `
   )
 
   if (result.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
-      result.errors
+        "There was an error loading your blog posts",
+        result.errors
     )
     return
   }
 
-  const posts = result.data.allMarkdownRemark.nodes
+  const posts = result?.data?.allMarkdownRemark.nodes
 
   if (posts.length > 0) {
     posts.forEach((post, index) => {
@@ -47,8 +47,8 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
         context: {
           id: post.id,
           previousPostId,
-          nextPostId,
-        },
+          nextPostId
+        }
       })
     })
   }
@@ -61,9 +61,9 @@ const onCreateNode: GatsbyNode["onCreateNode"] = ({ node, actions, getNode }) =>
     const value = createFilePath({ node, getNode })
 
     createNodeField({
-      name: `slug`,
+      name: "slug",
       node,
-      value,
+      value
     })
   }
 }
