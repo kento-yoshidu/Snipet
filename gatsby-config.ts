@@ -20,38 +20,38 @@ const plugins: GatsbyConfig["plugins"] = [
     }
   },
   {
-    resolve: `gatsby-source-filesystem`,
+    resolve: "gatsby-source-filesystem",
     options: {
-      name: `images`,
+      name: "images",
       path: `${__dirname}/src/images`
     }
   },
   {
-    resolve: `gatsby-transformer-remark`,
+    resolve: "gatsby-transformer-remark",
     options: {
       plugins: [
         {
-          resolve: `gatsby-remark-images`,
+          resolve: "gatsby-remark-images",
           options: {
             maxWidth: 630
           }
         },
         {
-          resolve: `gatsby-remark-responsive-iframe`,
+          resolve: "gatsby-remark-responsive-iframe",
           options: {
-            wrapperStyle: `margin-bottom: 1.0725rem`
+            wrapperStyle: "margin-bottom: 1.0725rem"
           }
         },
-        `gatsby-remark-prismjs`,
-        `gatsby-remark-copy-linked-files`,
-        `gatsby-remark-smartypants`
+        "gatsby-remark-prismjs",
+        "gatsby-remark-copy-linked-files",
+        "gatsby-remark-smartypants"
       ]
     }
   },
-  `gatsby-transformer-sharp`,
-  `gatsby-plugin-sharp`,
+  "gatsby-transformer-sharp",
+  "gatsby-plugin-sharp",
   {
-    resolve: `gatsby-plugin-feed`,
+    resolve: "gatsby-plugin-feed",
     options: {
       query: `
         {
@@ -68,7 +68,7 @@ const plugins: GatsbyConfig["plugins"] = [
       feeds: [
         {
           serialize: ({ query: { site, allMarkdownRemark } }) => {
-            return allMarkdownRemark.nodes.map(node => {
+            return allMarkdownRemark.nodes.map((node) => {
               return Object.assign({}, node.frontmatter, {
                 description: node.excerpt,
                 date: node.frontmatter.date,
@@ -104,14 +104,14 @@ const plugins: GatsbyConfig["plugins"] = [
     }
   },
   {
-    resolve: `gatsby-plugin-manifest`,
+    resolve: "gatsby-plugin-manifest",
     options: {
-      name: `Gatsby Starter Blog`,
-      short_name: `GatsbyJS`,
-      start_url: `/`,
-      background_color: `#ffffff`,
-      display: `minimal-ui`,
-      icon: `src/images/gatsby-icon.png`
+      name: "Gatsby Starter Blog",
+      short_name: "GatsbyJS",
+      start_url: "/",
+      background_color: "#ffffff",
+      display: "minimal-ui",
+      icon: "src/images/gatsby-icon.png"
     }
   }
 ]

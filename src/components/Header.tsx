@@ -8,23 +8,23 @@ interface Props {
 
 const Header = ({ pageTitle, pathname }: Props) => {
   const { site: { siteMetadata: { title } } } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
+      graphql`
+        query {
+          site {
+            siteMetadata {
+              title
+            }
           }
         }
-      }
-    `
+      `
   )
 
   return (
     <header className="my-32 text-center">
       <h1 className="text-5xl">
         {pathname === "/page/1/"
-          ? <>{title}</>
-          : <Link to="/page/1/">{title}</Link>
+            ? <>{title}</>
+            : <Link to="/page/1/">{title}</Link>
         }
       </h1>
 
