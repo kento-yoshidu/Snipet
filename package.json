@@ -28,13 +28,24 @@
     "typeface-montserrat": "0.0.75"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.13",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/builder-webpack5": "^6.5.10",
+    "@storybook/manager-webpack5": "^6.5.10",
+    "@storybook/react": "^6.5.10",
+    "@storybook/testing-library": "^0.0.13",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "autoprefixer": "^10.4.8",
+    "babel-loader": "^8.2.5",
     "eslint": "^8.23.0",
     "eslint-config-google": "^0.14.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-react": "^7.31.1",
+    "eslint-plugin-storybook": "^0.6.4",
     "gatsby-plugin-postcss": "^5.22.0",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
@@ -58,6 +69,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "eslint": "eslint src/**/**.{js,jsx,ts,tsx} gatsby-*.ts"
+    "eslint": "eslint src/**/**.{js,jsx,ts,tsx} gatsby-*.ts",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   }
 }
