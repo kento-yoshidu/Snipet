@@ -3567,6 +3567,11 @@ type NotFoundQueryVariables = Exact<{ [key: string]: never; }>;
 
 type NotFoundQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null } | null } | null };
 
+type SeoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SeoQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null, readonly description: string | null } | null } | null };
+
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
