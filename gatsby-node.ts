@@ -6,14 +6,13 @@ import { createFilePath } from "gatsby-source-filesystem"
 const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
-  const blogPost = path.resolve("./src/templates/blog-post.tsx")
 
   const result = await graphql(
       `
         {
-          allMarkdownRemark(
-            sort: { fields: [frontmatter___date], order: ASC }
-            limit: 1000
+          allArticles: allMarkdownRemark(
+            filter: { frontmatter: { published: { eq: true}}}
+            sort: { fields: [frontmatter___postdate], order: DESC }
           ) {
             nodes {
               id
@@ -35,6 +34,8 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
   }
 
   const posts = result?.data?.allMarkdownRemark.nodes
+
+  const blogPost = path.resolve("./src/templates/blog-post.tsx")
 
   if (posts.length > 0) {
     posts.forEach((post, index) => {
