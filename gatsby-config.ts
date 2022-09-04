@@ -113,7 +113,8 @@ const plugins: GatsbyConfig["plugins"] = [
       display: "minimal-ui",
       icon: "src/images/gatsby-icon.png"
     }
-  }
+  },
+  "gatsby-plugin-sass"
 ]
 
 const config: GatsbyConfig = {
