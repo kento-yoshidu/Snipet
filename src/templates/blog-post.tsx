@@ -4,6 +4,8 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
+import * as Styles from "../styles/blog-post.scss"
+
 const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery, location: string }) => {
   const { markdownRemark } = data
 
@@ -16,9 +18,10 @@ const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery, locatio
         itemScope
         itemType="http://schema.org/Article"
       >
-        <section
+        <main
           dangerouslySetInnerHTML={{ __html: markdownRemark?.html }}
           itemProp="articleBody"
+          className={Styles.blogPost}
         />
       </article>
       {/*
