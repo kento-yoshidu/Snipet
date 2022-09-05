@@ -6,15 +6,15 @@ import { createFilePath } from "gatsby-source-filesystem"
 const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
-  const blogPost = path.resolve("./src/templates/blog-post.tsx")
 
   const result = await graphql(
       `
         {
-          allMarkdownRemark(
-            sort: { fields: [frontmatter___date], order: ASC }
-            limit: 1000
-          ) {
+          allArticlesByGroup: allMarkdownRemark(
+          filter: { frontmatter: { published: { eq: true } } }
+          sort: { fields: frontmatter___postdate}
+        ) {
+          group(field: frontmatter___seriesSlug) {
             nodes {
               id
               fields {
@@ -23,7 +23,8 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
             }
           }
         }
-      `
+      }
+    `
   )
 
   if (result.errors) {
@@ -34,24 +35,26 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
     return
   }
 
-  const posts = result?.data?.allMarkdownRemark.nodes
+  const blogPost = path.resolve("./src/templates/blog-post.tsx")
 
-  if (posts.length > 0) {
-    posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id
-      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+  const allArticlesByGroup = result.data.allArticlesByGroup.group
+
+  allArticlesByGroup.forEach((group) => {
+    group.nodes.forEach((node, index) => {
+      const previousPostId = index === 0 ? null : group.nodes[index - 1].id
+      const nextPostId = index === group.nodes.length - 1 ? null : group.nodes[index + 1].id
 
       createPage({
-        path: post.fields.slug,
+        path: node.fields.slug,
         component: blogPost,
         context: {
-          id: post.id,
+          id: node.id,
           previousPostId,
           nextPostId
         }
       })
     })
-  }
+  })
 }
 
 const onCreateNode: GatsbyNode["onCreateNode"] = ({ node, actions, getNode }) => {

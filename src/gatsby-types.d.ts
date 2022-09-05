@@ -694,7 +694,14 @@ type FileFieldsEnum =
   | 'childMarkdownRemark.fileAbsolutePath'
   | 'childMarkdownRemark.frontmatter.date'
   | 'childMarkdownRemark.frontmatter.description'
+  | 'childMarkdownRemark.frontmatter.keywords'
+  | 'childMarkdownRemark.frontmatter.postdate'
+  | 'childMarkdownRemark.frontmatter.published'
+  | 'childMarkdownRemark.frontmatter.seriesName'
+  | 'childMarkdownRemark.frontmatter.seriesSlug'
+  | 'childMarkdownRemark.frontmatter.tags'
   | 'childMarkdownRemark.frontmatter.title'
+  | 'childMarkdownRemark.frontmatter.update'
   | 'childMarkdownRemark.headings'
   | 'childMarkdownRemark.headings.depth'
   | 'childMarkdownRemark.headings.id'
@@ -830,7 +837,14 @@ type FileFieldsEnum =
   | 'childrenMarkdownRemark.fileAbsolutePath'
   | 'childrenMarkdownRemark.frontmatter.date'
   | 'childrenMarkdownRemark.frontmatter.description'
+  | 'childrenMarkdownRemark.frontmatter.keywords'
+  | 'childrenMarkdownRemark.frontmatter.postdate'
+  | 'childrenMarkdownRemark.frontmatter.published'
+  | 'childrenMarkdownRemark.frontmatter.seriesName'
+  | 'childrenMarkdownRemark.frontmatter.seriesSlug'
+  | 'childrenMarkdownRemark.frontmatter.tags'
   | 'childrenMarkdownRemark.frontmatter.title'
+  | 'childrenMarkdownRemark.frontmatter.update'
   | 'childrenMarkdownRemark.headings'
   | 'childrenMarkdownRemark.headings.depth'
   | 'childrenMarkdownRemark.headings.id'
@@ -1089,7 +1103,14 @@ type FloatQueryOperatorInput = {
 type Frontmatter = {
   readonly date: Maybe<Scalars['Date']>;
   readonly description: Maybe<Scalars['String']>;
+  readonly keywords: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly postdate: Maybe<Scalars['Date']>;
+  readonly published: Maybe<Scalars['Boolean']>;
+  readonly seriesName: Maybe<Scalars['String']>;
+  readonly seriesSlug: Maybe<Scalars['String']>;
+  readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly title: Maybe<Scalars['String']>;
+  readonly update: Maybe<Scalars['Date']>;
 };
 
 
@@ -1100,10 +1121,33 @@ type Frontmatter_dateArgs = {
   locale: InputMaybe<Scalars['String']>;
 };
 
+
+type Frontmatter_postdateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type Frontmatter_updateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
 type FrontmatterFilterInput = {
   readonly date: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly keywords: InputMaybe<StringQueryOperatorInput>;
+  readonly postdate: InputMaybe<DateQueryOperatorInput>;
+  readonly published: InputMaybe<BooleanQueryOperatorInput>;
+  readonly seriesName: InputMaybe<StringQueryOperatorInput>;
+  readonly seriesSlug: InputMaybe<StringQueryOperatorInput>;
+  readonly tags: InputMaybe<StringQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
+  readonly update: InputMaybe<DateQueryOperatorInput>;
 };
 
 type GatsbyImageDataQueryOperatorInput = {
@@ -1813,7 +1857,14 @@ type MarkdownRemarkFieldsEnum =
   | 'fileAbsolutePath'
   | 'frontmatter.date'
   | 'frontmatter.description'
+  | 'frontmatter.keywords'
+  | 'frontmatter.postdate'
+  | 'frontmatter.published'
+  | 'frontmatter.seriesName'
+  | 'frontmatter.seriesSlug'
+  | 'frontmatter.tags'
   | 'frontmatter.title'
+  | 'frontmatter.update'
   | 'headings'
   | 'headings.depth'
   | 'headings.id'
@@ -3534,7 +3585,7 @@ type BlogPostBySlugQueryVariables = Exact<{
 }>;
 
 
-type BlogPostBySlugQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null } | null } | null, readonly markdownRemark: { readonly id: string, readonly excerpt: string | null, readonly html: string | null, readonly frontmatter: { readonly title: string | null, readonly date: string | null, readonly description: string | null } | null } | null, readonly previous: { readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly title: string | null } | null } | null, readonly next: { readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly title: string | null } | null } | null };
+type BlogPostBySlugQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null } | null } | null, readonly markdownRemark: { readonly html: string | null, readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly update: string | null, readonly description: string | null, readonly seriesSlug: string | null, readonly seriesName: string | null, readonly tags: ReadonlyArray<string | null> | null } | null } | null, readonly previous: { readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly title: string | null } | null } | null, readonly next: { readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly title: string | null } | null } | null };
 
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 
@@ -3575,7 +3626,7 @@ type SeoQuery = { readonly site: { readonly siteMetadata: { readonly title: stri
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type Unnamed_1_Query = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null }> } };
+type Unnamed_1_Query = { readonly allArticlesByGroup: { readonly group: ReadonlyArray<{ readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null }> }> } };
 
 
 }

@@ -2,17 +2,30 @@ import * as React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import Seo from "../components/seo"
+import { Link } from "gatsby"
 
 import * as Styles from "../styles/blog-post.scss"
 
-const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery, location: string }) => {
+import Seo from "../components/seo"
+
+const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery }) => {
   const { markdownRemark } = data
+  const { previous } = data
+  const { next } = data
+
 
   return (
     <Layout>
+      <p>{markdownRemark?.frontmatter?.title}</p>
 
-      <h1>blog-post</h1>
+      <Link to={previous?.fields?.slug}>
+        <p>{previous?.frontmatter?.title}</p>
+      </Link>
+
+      <Link to={next?.fields?.slug}>
+        <p>{next?.frontmatter?.title}</p>
+      </Link>
+
       <article
         className="blog-post"
         itemScope
@@ -24,48 +37,16 @@ const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery, locatio
           className={Styles.blogPost}
         />
       </article>
-      {/*
-        <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
-        </header>
-        <hr />
-        <nav className="blog-post-nav">
-          <ul
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              justifyContent: `space-between`,
-              listStyle: `none`,
-              padding: 0,
-            }}
-          >
-            <li>
-              {previous && (
-                <Link to={previous.fields.slug} rel="prev">
-                  ← {previous.frontmatter.title}
-                </Link>
-              )}
-            </li>
-            <li>
-              {next && (
-                <Link to={next.fields.slug} rel="next">
-                  {next.frontmatter.title} →
-                </Link>
-              )}
-            </li>
-          </ul>
-        </nav>
-      */}
     </Layout>
   )
 }
 
-export const Head = ({ data: { markdownRemark: post } }) => {
+export const Head = ({ data: { markdownRemark: post } }: { data: Queries.BlogPostBySlugQuery}) => {
+  console.log(post)
   return (
     <Seo
-      title={post.frontmatter.title}
-      description={post.frontmatter.description || post.excerpt}
+      title={post?.frontmatter?.title}
+      description={post?.frontmatter?.description }
     />
   )
 }
@@ -84,13 +65,15 @@ export const pageQuery = graphql`
       }
     }
     markdownRemark(id: { eq: $id }) {
-      id
-      excerpt(pruneLength: 160)
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        postdate(formatString: "YYYY-MM-DD")
+        update(formatString: "YYYY-MM-DD")
         description
+        seriesSlug
+        seriesName
+        tags
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
