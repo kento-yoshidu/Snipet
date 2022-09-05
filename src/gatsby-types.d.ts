@@ -3623,6 +3623,13 @@ type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 type SeoQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null, readonly description: string | null } | null } | null };
 
+type TagsPageQueryVariables = Exact<{
+  tag: InputMaybe<Scalars['String']>;
+}>;
+
+
+type TagsPageQuery = { readonly allMarkdownRemark: { readonly group: ReadonlyArray<{ readonly fieldValue: string | null, readonly totalCount: number, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly tags: ReadonlyArray<string | null> | null } | null }> }> } };
+
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
