@@ -5,17 +5,15 @@ import Layout from "../components/layout"
 
 const Tag = ({ data }: { data: Queries.TagsPageQuery }) => (
   <Layout>
-    <>
-      <ul>
-        {data.allMarkdownRemark.group.map((tag) => (
-          <li key={tag.fieldValue}>
-            <Link to={`/tag/${tag.fieldValue}/page/1/`}>
-              {tag.fieldValue}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </>
+    <ul>
+      {data.allMarkdownRemark.group.map((tag) => (
+        <li key={tag.fieldValue}>
+          <Link to={`/tag/${tag.fieldValue}/page/1/`}>
+            {tag.fieldValue}
+          </Link>
+        </li>
+      ))}
+    </ul>
   </Layout>
 )
 

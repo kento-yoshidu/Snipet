@@ -3,14 +3,12 @@ import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 
-const BlogIndex = () => {
-  return (
-    <Layout>
-      <h1>HOME</h1>
+const BlogIndex = () => (
+  <Layout>
+    <h1>HOME</h1>
 
-      <Link to="/hello-world">Hello World</Link>
-    </Layout>
-  )
-}
+    <Link to="/hello-world">Hello World</Link>
+  </Layout>
+)
 
 export default BlogIndex

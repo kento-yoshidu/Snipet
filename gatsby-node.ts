@@ -10,11 +10,10 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
   const result = await graphql(
       `
         {
-          allArticlesByGroup: allMarkdownRemark(
-          filter: { frontmatter: { published: { eq: true } } }
-          sort: { fields: frontmatter___postdate}
-        ) {
-          group(field: frontmatter___seriesSlug) {
+          allArticles: allMarkdownRemark(
+            filter: {frontmatter: {published: {eq: true}}}
+            sort: {order: DESC, fields: frontmatter___postdate}
+          ) {
             nodes {
               id
               fields {
@@ -22,9 +21,21 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
               }
             }
           }
+          allArticlesByGroup: allMarkdownRemark(
+            filter: { frontmatter: { published: { eq: true } } }
+            sort: { fields: frontmatter___postdate}
+          ) {
+            group(field: frontmatter___seriesSlug) {
+              nodes {
+                id
+                fields {
+                  slug
+                }
+              }
+            }
+          }
         }
-      }
-    `
+      `
   )
 
   if (result.errors) {
@@ -34,6 +45,35 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
     )
     return
   }
+
+  // --------------------------------------------------
+  // 全ての記事を投稿日時順に表示
+
+  /*
+  const allArticles = result.data.allArticles
+
+  allArticles.nodes.forEach((_) => {
+    const postCount = allArticles.nodes.length
+    const pageCount = Math.ceil(postCount / 10)
+
+    Array.from({ length: pageCount }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? "/page/1/" : `/page/${i + 1}/`,
+        component: path.resolve("./src/templates/ pages.tsx"),
+        context: {
+          postCount: postCount,
+          pageCount: pageCount,
+          totalPageCount: pageCount,
+          skip: 10 * i,
+          limit: 10,
+          currentPage: i + 1,
+          isFirst: i + 1 === 1,
+          isLast: i + 1 === pageCount
+        }
+      })
+    })
+  })
+  */
 
   const blogPost = path.resolve("./src/templates/blog-post.tsx")
 

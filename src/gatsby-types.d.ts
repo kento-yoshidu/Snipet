@@ -3613,11 +3613,6 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: st
 
 type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
 
-type NotFoundQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type NotFoundQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null } | null } | null };
-
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3633,7 +3628,7 @@ type TagsPageQuery = { readonly allMarkdownRemark: { readonly group: ReadonlyArr
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type Unnamed_1_Query = { readonly allArticlesByGroup: { readonly group: ReadonlyArray<{ readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null }> }> } };
+type Unnamed_1_Query = { readonly allArticles: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null }> }, readonly allArticlesByGroup: { readonly group: ReadonlyArray<{ readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null }> }> } };
 
 
 }
