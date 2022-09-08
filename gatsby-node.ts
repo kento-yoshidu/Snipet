@@ -75,18 +75,15 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
   })
   */
 
-  const blogPost = path.resolve("./src/templates/blog-post.tsx")
 
-  const allArticlesByGroup = result.data.allArticlesByGroup.group
-
-  allArticlesByGroup.forEach((group) => {
+  result.data.allArticlesByGroup.group.forEach((group) => {
     group.nodes.forEach((node, index) => {
       const previousPostId = index === 0 ? null : group.nodes[index - 1].id
       const nextPostId = index === group.nodes.length - 1 ? null : group.nodes[index + 1].id
 
       createPage({
         path: node.fields.slug,
-        component: blogPost,
+        component: path.resolve("./src/templates/blog-post.tsx"),
         context: {
           id: node.id,
           previousPostId,
