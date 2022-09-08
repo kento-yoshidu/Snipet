@@ -49,7 +49,6 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
   // --------------------------------------------------
   // 全ての記事を投稿日時順に表示
 
-  /*
   const allArticles = result.data.allArticles
 
   allArticles.nodes.forEach((_) => {
@@ -59,7 +58,7 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
     Array.from({ length: pageCount }).forEach((_, i) => {
       createPage({
         path: i === 0 ? "/page/1/" : `/page/${i + 1}/`,
-        component: path.resolve("./src/templates/ pages.tsx"),
+        component: path.resolve("./src/templates/pages.tsx"),
         context: {
           postCount: postCount,
           pageCount: pageCount,
@@ -73,7 +72,6 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
       })
     })
   })
-  */
 
 
   result.data.allArticlesByGroup.group.forEach((group) => {
