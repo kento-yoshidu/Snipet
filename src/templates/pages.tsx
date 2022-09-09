@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 
@@ -20,7 +20,9 @@ type PageProps = {
 const ArticleList = ({ data, pageContext }: PageProps) => (
   <Layout>
     {data.allMarkdownRemark.nodes.map((node) => (
-      <p key={node.frontmatter?.title}>{node.frontmatter?.title}</p>
+      <p key={node.frontmatter?.title}>
+        <Link to={node.fields?.slug}>{node.frontmatter?.title}</Link>
+      </p>
     ))}
   </Layout>
 )
