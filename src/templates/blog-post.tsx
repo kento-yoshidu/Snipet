@@ -16,40 +16,31 @@ const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery }) => {
 
   return (
     <Layout>
-      <p>{markdownRemark?.frontmatter?.title}</p>
-
-      <Link to={previous?.fields?.slug}>
-        <p>{previous?.frontmatter?.title}</p>
-      </Link>
-
-      <Link to={next?.fields?.slug}>
-        <p>{next?.frontmatter?.title}</p>
-      </Link>
-
       <article
         className="blog-post"
         itemScope
         itemType="http://schema.org/Article"
       >
         <main
-          dangerouslySetInnerHTML={{ __html: markdownRemark?.html }}
+          dangerouslySetInnerHTML={{ __html: markdownRemark?.html || "" }}
           itemProp="articleBody"
           className={Styles.blogPost}
         />
       </article>
+
+      {previous && (
+        <p><Link to={previous.fields?.slug}>{previous.frontmatter?.title}</Link></p>
+      )}
     </Layout>
   )
 }
 
-export const Head = ({ data: { markdownRemark: post } }: { data: Queries.BlogPostBySlugQuery}) => {
-  console.log(post)
-  return (
-    <Seo
-      title={post?.frontmatter?.title}
-      description={post?.frontmatter?.description }
-    />
-  )
-}
+export const Head = ({ data: { markdownRemark: post } }: { data: Queries.BlogPostBySlugQuery }) => (
+  <Seo
+    title={post?.frontmatter?.title || ""}
+    description={post?.frontmatter?.description || ""}
+  />
+)
 
 export default BlogPostTemplate
 
