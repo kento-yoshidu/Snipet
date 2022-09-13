@@ -2,9 +2,12 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
+import Header from "../components/Header"
 
 const Tag = ({ data }: { data: Queries.TagsPageQuery }) => (
   <Layout>
+    <Header />
+
     <ul>
       {data.allMarkdownRemark.group.map((tag) => (
         <li key={tag.fieldValue}>

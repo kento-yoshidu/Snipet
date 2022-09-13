@@ -20,12 +20,12 @@ const Header = ({ pageTitle, pathname }: Props) => {
   )
 
   return (
-    <header className="my-32 text-center">
+    <header className="my-32 text-center ">
       <h1 className="text-5xl">
         {pathname === "/page/1/"
             ? <>{title}</>
             : <Link to="/page/1/">
-                <a className="underline text-gray-700 hover:text-main-color">{title}</a>
+                <a className="hover:bg-gradient-to-r hover:from-main-color hover:to-sub-color hover:bg-clip-text hover:text-transparent underline">{title}</a>
               </Link>
         }
       </h1>

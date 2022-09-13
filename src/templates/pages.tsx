@@ -2,8 +2,9 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
+import Header from "../components/Header"
 
-type PageProps = {
+type Props = {
   data: Queries.AllArticlesQuery
   pageContext: {
     postCount: number
@@ -15,10 +16,15 @@ type PageProps = {
     isFirst: boolean
     isLast: boolean
   }
+  location: {
+    pagepath: string
+  }
 }
 
-const ArticleList = ({ data, pageContext }: PageProps) => (
+const ArticleList = ({ data, pageContext, location }: Props) => (
   <Layout>
+    <Header />
+
     {data.allMarkdownRemark.nodes.map((node) => (
       <p key={node.frontmatter?.title}>
         <Link to={node.fields?.slug}>{node.frontmatter?.title}</Link>
