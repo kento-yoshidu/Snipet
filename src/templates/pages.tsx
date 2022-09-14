@@ -25,6 +25,40 @@ const ArticleList = ({ data, pageContext, location }: Props) => (
   <Layout>
     <Header />
 
+    {data.allMarkdownRemark.nodes.map((node) => {
+      const [postY, postM, postD] = node?.frontmatter?.postdate?.split("-")
+      const [updateY, updateM, updateD] = node.frontmatter.update.split("-")
+
+      return (
+        <div
+          key={node.id}
+          className="py-10">
+          <p>{postY}年{postM}月{postD}日</p>
+          <p>{updateY}年{updateM}月{updateD}日</p>
+          <p>{node.frontmatter?.seriesName}</p>
+
+          <ul>
+            {node.frontmatter?.tags?.map((tag) => (
+              <p key={tag}>{tag}</p>
+            ))}
+          </ul>
+
+          <p key={node.frontmatter?.title}>
+            <Link to={node.fields?.slug}>{node.frontmatter?.title}</Link>
+          </p>
+
+          <p>{node.frontmatter?.description}</p>
+
+        </div>
+      )})}
+  </Layout>
+)
+
+/*
+const ArticleList = ({ data, pageContext, location }: Props) => (
+  <Layout>
+    <Header />
+
     {data.allMarkdownRemark.nodes.map((node) => (
       <p key={node.frontmatter?.title}>
         <Link to={node.fields?.slug}>{node.frontmatter?.title}</Link>
@@ -32,6 +66,7 @@ const ArticleList = ({ data, pageContext, location }: Props) => (
     ))}
   </Layout>
 )
+*/
 
 export default ArticleList
 
@@ -50,6 +85,7 @@ export const pageQuery = graphql`
       skip: $skip
     ) {
       nodes {
+        id
         fields {
           slug
         }
