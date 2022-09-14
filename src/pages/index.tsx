@@ -1,14 +1,12 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
+import Header from "../components/Header"
 import Seo from "../components/seo"
 
 const BlogIndex = () => (
   <Layout>
-    <h1>HOME</h1>
-
-    <Link to="/hello-world">Hello World</Link>
+    <Header />
   </Layout>
 )
 

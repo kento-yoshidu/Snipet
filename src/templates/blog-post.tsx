@@ -7,6 +7,7 @@ import { Link } from "gatsby"
 import * as Styles from "../styles/blog-post.scss"
 
 import Seo from "../components/seo"
+import Header from "../components/Header"
 
 const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery }) => {
   const { markdownRemark } = data
@@ -16,6 +17,8 @@ const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery }) => {
 
   return (
     <Layout>
+      <Header />
+
       <article
         className="blog-post"
         itemScope

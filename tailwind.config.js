@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "main-color": "var(--main-color)"
+        "main-color": "var(--main-color)",
+        "sub-color": "var(--sub-color)"
       }
     }
   },
