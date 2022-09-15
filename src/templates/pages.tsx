@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
+import Seo from "../components/seo"
 import Header from "../components/Header"
 
 type Props = {
@@ -23,11 +24,13 @@ type Props = {
 
 const ArticleList = ({ data, pageContext, location }: Props) => (
   <Layout>
-    <Header />
+    <Header
+      pageTitle="記事一覧"
+    />
 
     {data.allMarkdownRemark.nodes.map((node) => {
       const [postY, postM, postD] = node?.frontmatter?.postdate?.split("-")
-      const [updateY, updateM, updateD] = node.frontmatter.update.split("-")
+      const [updateY, updateM, updateD] = node?.frontmatter?.update?.split("-")
 
       return (
         <div
@@ -54,21 +57,14 @@ const ArticleList = ({ data, pageContext, location }: Props) => (
   </Layout>
 )
 
-/*
-const ArticleList = ({ data, pageContext, location }: Props) => (
-  <Layout>
-    <Header />
-
-    {data.allMarkdownRemark.nodes.map((node) => (
-      <p key={node.frontmatter?.title}>
-        <Link to={node.fields?.slug}>{node.frontmatter?.title}</Link>
-      </p>
-    ))}
-  </Layout>
-)
-*/
-
 export default ArticleList
+
+export const Head =({ data }: { data: Queries.AllArticlesQuery }) => {
+  <Seo
+    title="test"
+    description="test"
+  />
+}
 
 export const pageQuery = graphql`
   query AllArticles(

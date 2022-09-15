@@ -21,17 +21,17 @@ const Header = ({ pageTitle, pathname }: Props) => {
 
   return (
     <header className="my-32 text-center ">
-      <h1 className="text-5xl">
+      <h1 className="text-5xl mb-24">
         {pathname === "/page/1/"
             ? <>{title}</>
             : <Link to="/page/1/">
-                <a className="hover:bg-gradient-to-r hover:from-main-color hover:to-sub-color hover:bg-clip-text hover:text-transparent underline">{title}</a>
+                <a className="hover:bg-gradient-to-r hover:from-main-color hover:to-sub-color hover:bg-clip-text hover:text-transparent underline font-light text-gray-700">{title}</a>
               </Link>
         }
       </h1>
 
       {pageTitle && (
-        <h2>{pageTitle}</h2>
+        <h2 className="text-6xl inline-block bg-gradient-to-r from-main-color to-sub-color bg-clip-text text-transparent tracking-widest">{pageTitle}</h2>
       )}
     </header>
   )

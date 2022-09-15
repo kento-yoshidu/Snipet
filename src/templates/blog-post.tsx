@@ -34,6 +34,10 @@ const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery }) => {
       {previous && (
         <p><Link to={previous.fields?.slug}>{previous.frontmatter?.title}</Link></p>
       )}
+
+      {next && (
+        <p><Link to={next.fields?.slug}>{next.frontmatter?.title}</Link></p>
+      )}
     </Layout>
   )
 }
