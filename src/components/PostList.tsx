@@ -14,7 +14,16 @@ const PostList = ({ postData }: { postData: Queries.AllArticlesQuery }) => {
         return (
           <div
             key={node.id}
-            className="py-10">
+            className="border-b"
+          >
+            <h3 key={node.frontmatter?.title}>
+              <Link to={node.fields?.slug}>
+                <a className="text-gray-600 text-6xl underline hover:bg-gradient-to-r hover:from-main-color hover:to-sub-color hover:bg-clip-text hover:text-transparent">
+                  {node.frontmatter?.title}
+                </a>
+              </Link>
+            </h3>
+
             <p>{postY}年{postM}月{postD}日</p>
             <p>{updateY}年{updateM}月{updateD}日</p>
             <p>{node.frontmatter?.seriesName}</p>
@@ -24,10 +33,6 @@ const PostList = ({ postData }: { postData: Queries.AllArticlesQuery }) => {
                 <p key={tag}>{tag}</p>
               ))}
             </ul>
-
-            <p key={node.frontmatter?.title}>
-              <Link to={node.fields?.slug}>{node.frontmatter?.title}</Link>
-            </p>
 
             <p>{node.frontmatter?.description}</p>
 
