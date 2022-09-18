@@ -21,7 +21,7 @@ const Header = ({ pageTitle, pathname }: Props) => {
 
   return (
     <header className="my-32 text-center ">
-      <h1 className="text-5xl mb-24">
+      <h1 className="text-5xl mb-16">
         {pathname === "/page/1/"
             ? <>{title}</>
             : <Link to="/page/1/">
