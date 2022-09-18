@@ -42,14 +42,14 @@ const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery }) => {
   )
 }
 
+export default BlogPostTemplate
+
 export const Head = ({ data: { markdownRemark: post } }: { data: Queries.BlogPostBySlugQuery }) => (
   <Seo
     title={post?.frontmatter?.title || ""}
     description={post?.frontmatter?.description || ""}
   />
 )
-
-export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug(
