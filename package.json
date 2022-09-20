@@ -53,6 +53,7 @@
     "eslint-loader": "^4.0.2",
     "eslint-plugin-react": "^7.31.1",
     "eslint-plugin-storybook": "^0.6.4",
+    "gatsby-plugin-dts-css-modules": "^3.0.0",
     "gatsby-plugin-postcss": "^5.22.0",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",

@@ -4,7 +4,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import { Link } from "gatsby"
 
-import * as Styles from "../styles/blog-post.scss"
+import * as Styles from "../styles/blog-post.module.scss"
 
 import Seo from "../components/seo"
 import Header from "../components/Header"
