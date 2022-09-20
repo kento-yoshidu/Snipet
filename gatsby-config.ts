@@ -114,7 +114,8 @@ const plugins: GatsbyConfig["plugins"] = [
       icon: "src/images/gatsby-icon.png"
     }
   },
-  "gatsby-plugin-sass"
+  "gatsby-plugin-sass",
+  "gatsby-plugin-dts-css-modules"
 ]
 
 const config: GatsbyConfig = {
