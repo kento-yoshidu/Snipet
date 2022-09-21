@@ -8,6 +8,7 @@ import * as Styles from "../styles/blog-post.module.scss"
 
 import Seo from "../components/seo"
 import Header from "../components/Header"
+import PostInfo from "../components/PostInfo"
 
 const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery }) => {
   const { markdownRemark } = data
@@ -18,6 +19,10 @@ const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery }) => {
   return (
     <Layout>
       <Header />
+
+      <PostInfo
+        postInfo={data.markdownRemark?.frontmatter}
+      />
 
       <article
         className="blog-post"
