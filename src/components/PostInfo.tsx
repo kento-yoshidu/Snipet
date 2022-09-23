@@ -2,8 +2,13 @@ import React from "react"
 import { Link } from "gatsby"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFolder } from "@fortawesome/free-solid-svg-icons"
-import { faGithubSquare } from "@fortawesome/free-brands-svg-icons"
+import {
+  faFolder,
+  faClock,
+  faRedo,
+  faTag,
+  faT
+} from "@fortawesome/free-solid-svg-icons"
 
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
@@ -27,14 +32,39 @@ const PostInfo = ({ postInfo }) => {
 
       <h1 className="mb-8 text-6xl bg-gradient-to-r from-main-color to-sub-color bg-clip-text text-transparent inline-block tracking-widest">{postInfo.title}</h1>
 
-      <ul className="mb-8 text-2xl">
-        <li>{`${postY}年${postM}月${postD}日`}</li>
-        <li>{`${updateY}年${updateM}月${updateD}日`}</li>
+      <ul className="flex gap-8 mb-8 text-2xl">
+        <li>
+          <FontAwesomeIcon
+            className="mr-2"
+            icon={faClock}
+          />
+          {`${postY}年${postM}月${postD}日`}
+        </li>
+        <li>
+          <FontAwesomeIcon
+            className="mr-2"
+            icon={faRedo}
+          />
+          {`${updateY}年${updateM}月${updateD}日`}
+        </li>
       </ul>
 
-      <ul className="mb-8">
+      <ul className="flex mb-8 text-2xl items-center">
+        <FontAwesomeIcon
+          className="mr-2"
+          icon={faTag}
+        />
         {postInfo.tags.map((tag) => (
-          <li key={`tag${tag}`}>{tag}</li>
+          <li
+            className="mr-4"
+            key={`tag${tag}`}
+          >
+            <Link to={`/${tag}/page/1/`}>
+              <a className="link">
+                # {tag}
+              </a>
+            </Link>
+          </li>
         ))}
       </ul>
 
