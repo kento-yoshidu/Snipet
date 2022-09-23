@@ -7,7 +7,7 @@ import {
   faClock,
   faRedo,
   faTag,
-  faT
+  faComment
 } from "@fortawesome/free-solid-svg-icons"
 
 import "@fortawesome/fontawesome-svg-core/styles.css"
@@ -19,8 +19,8 @@ const PostInfo = ({ postInfo }) => {
   const [updateY, updateM, updateD] = postInfo.update.split("-")
 
   return (
-    <div className="border ml-[13vw] text-gray-600 max-w-7xl">
-      <p className="text-3xl mb-8">
+    <div className="w-11/12 mx-auto md:ml-[13vw] text-gray-600 max-w-7xl">
+      <p className="text-2xl md:text-3xl mb-8">
         <FontAwesomeIcon icon={faFolder} className="mr-4"/>
 
         <Link to={`/series/${postInfo.seriesSlug}/page/1/`}>
@@ -30,9 +30,9 @@ const PostInfo = ({ postInfo }) => {
         </Link>
       </p>
 
-      <h1 className="mb-8 text-6xl bg-gradient-to-r from-main-color to-sub-color bg-clip-text text-transparent inline-block tracking-widest">{postInfo.title}</h1>
+      <h1 className="mb-8 text-4xl md:text-6xl bg-gradient-to-r from-main-color to-sub-color bg-clip-text text-transparent inline-block tracking-widest">{postInfo.title}</h1>
 
-      <ul className="flex gap-8 mb-8 text-2xl">
+      <ul className="flex gap-8 mb-8 text-2xl md:text-3xl">
         <li>
           <FontAwesomeIcon
             className="mr-2"
@@ -49,14 +49,14 @@ const PostInfo = ({ postInfo }) => {
         </li>
       </ul>
 
-      <ul className="flex mb-8 text-2xl items-center">
+      <ul className="flex mb-8 text-2xl md:text-3xl items-center">
         <FontAwesomeIcon
           className="mr-2"
           icon={faTag}
         />
         {postInfo.tags.map((tag) => (
           <li
-            className="mr-4"
+            className="mr-6"
             key={`tag${tag}`}
           >
             <Link to={`/${tag}/page/1/`}>
@@ -68,7 +68,13 @@ const PostInfo = ({ postInfo }) => {
         ))}
       </ul>
 
-      <p>{postInfo.description}</p>
+      <p className="text-2xl md:text-3xl">
+        <FontAwesomeIcon
+          className="mr-2"
+          icon={faComment}
+        />
+        {postInfo.description}
+      </p>
     </div>
   )
 }
