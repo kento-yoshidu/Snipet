@@ -25,7 +25,7 @@ const Header = ({ pageTitle, pathname }: Props) => {
         {pathname === "/page/1/"
             ? <>{title}</>
             : <Link to="/page/1/">
-                <a className="hover:bg-gradient-to-r hover:from-main-color hover:to-sub-color hover:bg-clip-text hover:text-transparent underline font-light text-gray-700">{title}</a>
+                <a className="link underline font-light text-gray-700">{title}</a>
               </Link>
         }
       </h1>
