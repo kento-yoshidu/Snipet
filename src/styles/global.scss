@@ -24,3 +24,11 @@ html {
     sans-serif;
   scroll-behavior: smooth;
 }
+
+.link {
+  @apply inline-block underline;
+
+  &:hover {
+    @apply bg-gradient-to-br from-main-color to-sub-color bg-clip-text text-transparent
+  }
+}
