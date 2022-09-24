@@ -10,6 +10,9 @@ import Seo from "../components/seo"
 import Header from "../components/Header"
 import PostInfo from "../components/PostInfo"
 
+import "prismjs/themes/prism-tomorrow.css"
+import "prismjs/plugins/line-numbers/prism-line-numbers.css"
+
 const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery }) => {
   const { markdownRemark } = data
   const { previous } = data
