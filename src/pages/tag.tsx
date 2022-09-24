@@ -11,7 +11,7 @@ const Tag = ({ data }: { data: Queries.TagsPageQuery }) => (
       pageTitle="タグ一覧"
     />
 
-    <ul className="w-1/2 mx-auto my-48 flex gap-6">
+    <ul className="w-1/2 mx-auto my-32 flex flex-wrap gap-6">
       {data.allMarkdownRemark.group.map((tag) => (
         <li
           className="border-2 border-gray-600 rounded-md hover:border-main-color py-2 px-4"
@@ -19,7 +19,7 @@ const Tag = ({ data }: { data: Queries.TagsPageQuery }) => (
         >
           <Link to={`/tag/${tag.fieldValue}/page/1/`}>
             <a className="text-3xl text-gray-600 hover:text-main-color">
-              {tag.fieldValue}
+              {tag.fieldValue}({tag.totalCount})
             </a>
           </Link>
         </li>
@@ -47,16 +47,9 @@ export const pageQuery = graphql`
       }
     ) {
       group(field: frontmatter___tags, limit: 1) {
-        nodes {
-          frontmatter {
-            tags
-          }
-        }
         fieldValue
         totalCount
       }
     }
   }
 `
-
-
