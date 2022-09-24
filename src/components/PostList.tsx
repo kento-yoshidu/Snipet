@@ -17,7 +17,7 @@ config.autoAddCss = false
 
 const PostList = ({ postData }: { postData: Queries.AllArticlesQuery }) => {
   return (
-    <section className="w-5/6 md:w-1/2 mx-auto">
+    <section className="w-5/6 md:w-1/2 mx-auto py-16">
       {postData.allMarkdownRemark.nodes.map((node) => {
         const [postY, postM, postD] = node?.frontmatter?.postdate?.split("-")
         const [updateY, updateM, updateD] = node?.frontmatter?.update?.split("-")
@@ -25,17 +25,17 @@ const PostList = ({ postData }: { postData: Queries.AllArticlesQuery }) => {
         return (
           <div
             key={node.id}
-            className="border-b"
+            className="border-t border-gray-400 py-12 px-16 text-gray-700 tracking-wider"
           >
             <h3 key={node.frontmatter?.title}>
               <Link to={node.fields?.slug}>
-                <a className="mb-4 link text-gray-600 text-3xl md:text-6xl underline">
+                <a className="mb-8 link text-3xl md:text-5xl underline leading-loose">
                   {node.frontmatter?.title}
                 </a>
               </Link>
             </h3>
 
-            <ul className="flex gap-4 mb-4 text-2xl tracking-wide">
+            <ul className="flex gap-4 mb-6 text-3xl tracking-wide">
               <li>
                 <FontAwesomeIcon
                   className="mr-2"
@@ -53,24 +53,39 @@ const PostList = ({ postData }: { postData: Queries.AllArticlesQuery }) => {
               </li>
             </ul>
 
-            <p className="mb-4 text-2xl">
+            <p className="mb-6 text-3xl">
               <FontAwesomeIcon
                 className="mr-2"
                 icon={faFolder}
               />
-              {node.frontmatter?.seriesName}</p>
+              <Link to={`/series/${node.frontmatter?.seriesSlug}/page/1/`}>
+                <a className="link">
+                  {node.frontmatter?.seriesName}
+                </a>
+              </Link>
+            </p>
 
-            <ul className="flex gap-2 mb-4 text-2xl">
+            <ul className="flex items-center gap-2 mb-6 text-3xl">
               <FontAwesomeIcon
                 className="mr-2"
                 icon={faTag}
               />
               {node.frontmatter?.tags?.map((tag) => (
-                <li key={tag}># {tag}</li>
+                <li key={tag}>
+                  <Link to={`/tag/${tag}/page/1/`}>
+                    <a className="link">
+                      # {tag}
+                    </a>
+                  </Link>
+                </li>
               ))}
             </ul>
 
-            <p className="text-2xl">
+            <p className="text-3xl">
+              <FontAwesomeIcon
+                className="mr-2"
+                icon={faComment}
+              />
               {node.frontmatter?.description}
             </p>
           </div>
