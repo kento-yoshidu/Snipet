@@ -17,7 +17,7 @@ config.autoAddCss = false
 
 const PostList = ({ postData }: { postData: Queries.AllArticlesQuery }) => {
   return (
-    <section className="w-5/6 md:w-1/2 mx-auto py-16">
+    <section className="w-5/6 md:w-1/2 mx-auto py-12">
       {postData.allMarkdownRemark.nodes.map((node) => {
         const [postY, postM, postD] = node?.frontmatter?.postdate?.split("-")
         const [updateY, updateM, updateD] = node?.frontmatter?.update?.split("-")

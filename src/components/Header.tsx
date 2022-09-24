@@ -20,8 +20,8 @@ const Header = ({ pageTitle, pathname }: Props) => {
   )
 
   return (
-    <header className="my-20 md:my-32 text-center">
-      <h1 className="text-3xl md:text-5xl mb-16">
+    <header className="my-20 text-center">
+      <h1 className="text-3xl md:text-5xl">
         {pathname === "/page/1/"
             ? <>{title}</>
             : <Link to="/page/1/">
@@ -31,7 +31,7 @@ const Header = ({ pageTitle, pathname }: Props) => {
       </h1>
 
       {pageTitle && (
-        <h2 className="text-5xl md:text-6xl inline-block bg-gradient-to-r from-main-color to-sub-color bg-clip-text text-transparent tracking-widest">{pageTitle}</h2>
+        <h2 className="my-16 text-5xl md:text-6xl inline-block bg-gradient-to-br from-main-color to-sub-color bg-clip-text text-transparent tracking-widest">{pageTitle}</h2>
       )}
     </header>
   )
