@@ -15,7 +15,6 @@ const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery }) => {
   const { previous } = data
   const { next } = data
 
-
   return (
     <Layout>
       <Header />
@@ -37,11 +36,25 @@ const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery }) => {
       </article>
 
       {previous && (
-        <p><Link to={previous.fields?.slug}>{previous.frontmatter?.title}</Link></p>
+        <Link to={previous.fields?.slug}>
+          <a className="block md:ml-[13vw] w-11/12 md:w-1/2 mx-auto my-4 py-6 px-8 border-2 rounded-md text-gray-600">
+            <p className="mb-4 md:mb-8 pb-2 border-dotted border-b-[3px] border-main-color font-bold text-xl md:text-3xl">← 前の記事</p>
+            <h3 className="text-2xl md:text-4xl">
+              {previous.frontmatter?.title}
+            </h3>
+          </a>
+        </Link>
       )}
 
       {next && (
-        <p><Link to={next.fields?.slug}>{next.frontmatter?.title}</Link></p>
+        <Link to={next.fields?.slug}>
+          <a className="block md:ml-[13vw] w-11/12 md:w-1/2 mx-auto my-4 p-8 border-2 rounded-md text-gray-600">
+            <p className="mb-4 pb-2 border-dotted border-b-[3px] border-main-color font-bold text-xl">次の記事 →</p>
+            <h3 className="text-2xl">
+              {next.frontmatter?.title}
+            </h3>
+          </a>
+        </Link>
       )}
     </Layout>
   )

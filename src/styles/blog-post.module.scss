@@ -4,11 +4,14 @@
   margin-right: 5vw;
 
   a {
-    color: var(--post-link-color);
-    text-decoration: none;
+    color: var(--main-color);
 
     &:hover {
       text-decoration: underline;
+    }
+
+    &:visited {
+      color: #609;
     }
   }
 
