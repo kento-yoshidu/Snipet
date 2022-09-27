@@ -17,7 +17,7 @@ config.autoAddCss = false
 
 const PostList = ({ postData }: { postData: Queries.AllArticlesQuery }) => {
   return (
-    <section className="w-5/6 md:w-1/2 mx-auto py-12">
+    <section className="w-11/12 md:w-1/2 mx-auto py-12 my-0">
       {postData.allMarkdownRemark.nodes.map((node) => {
         const [postY, postM, postD] = node?.frontmatter?.postdate?.split("-")
         const [updateY, updateM, updateD] = node?.frontmatter?.update?.split("-")
@@ -25,17 +25,17 @@ const PostList = ({ postData }: { postData: Queries.AllArticlesQuery }) => {
         return (
           <div
             key={node.id}
-            className="border-t border-gray-400 py-12 px-16 text-gray-700 tracking-wider"
+            className="border-t border-gray-400 p-4 md:py-12 md:px-16 text-gray-700 tracking-wider"
           >
             <h3 key={node.frontmatter?.title}>
               <Link to={node.fields?.slug}>
-                <a className="mb-8 link text-3xl md:text-5xl underline leading-loose">
+                <a className="mb-4 md:mb-8 link text-3xl md:text-5xl underline leading-relaxed">
                   {node.frontmatter?.title}
                 </a>
               </Link>
             </h3>
 
-            <ul className="flex gap-4 mb-6 text-3xl tracking-wide">
+            <ul className="flex gap-4 mb-2 md:mb-6 text-xl md:text-3xl tracking-wide">
               <li>
                 <FontAwesomeIcon
                   className="mr-2"
@@ -53,7 +53,7 @@ const PostList = ({ postData }: { postData: Queries.AllArticlesQuery }) => {
               </li>
             </ul>
 
-            <p className="mb-6 text-3xl">
+            <p className="mb-2 md:mb-6 text-xl md:text-3xl">
               <FontAwesomeIcon
                 className="mr-2"
                 icon={faFolder}
@@ -65,13 +65,13 @@ const PostList = ({ postData }: { postData: Queries.AllArticlesQuery }) => {
               </Link>
             </p>
 
-            <ul className="flex items-center gap-2 mb-6 text-3xl">
+            <ul className="flex flex-wrap items-center gap-2 mb-2 md:mb-6 text-xl md:text-3xl">
               <FontAwesomeIcon
                 className="mr-2"
                 icon={faTag}
               />
               {node.frontmatter?.tags?.map((tag) => (
-                <li key={tag}>
+                <li key={tag} className="mr-6">
                   <Link to={`/tag/${tag}/page/1/`}>
                     <a className="link">
                       # {tag}
@@ -81,7 +81,7 @@ const PostList = ({ postData }: { postData: Queries.AllArticlesQuery }) => {
               ))}
             </ul>
 
-            <p className="text-3xl">
+            <p className="text-xl md:text-3xl">
               <FontAwesomeIcon
                 className="mr-2"
                 icon={faComment}
