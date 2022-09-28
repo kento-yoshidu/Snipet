@@ -35,27 +35,29 @@ const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery }) => {
         />
       </article>
 
-      {previous && (
-        <Link to={previous.fields?.slug}>
-          <a className="block md:ml-[13vw] w-11/12 md:w-1/2 mx-auto my-4 py-6 px-8 border-2 rounded-md text-gray-600">
-            <p className="mb-4 md:mb-8 pb-2 border-dotted border-b-[3px] border-main-color font-bold text-xl md:text-3xl">← 前の記事</p>
-            <h3 className="text-2xl md:text-4xl">
-              {previous.frontmatter?.title}
-            </h3>
-          </a>
-        </Link>
-      )}
+      <div className="mt-8 md:mt-16 mb-16 md:mb-32">
+        {previous && (
+          <Link to={previous.fields?.slug}>
+            <a className="block md:ml-[13vw] w-11/12 md:w-1/2 mx-auto my-8 py-6 px-8 border-2 rounded-md text-gray-600 duration-75 hover:bg-gray-100">
+              <p className="mb-4 md:mb-8 pb-2 border-dotted border-b-[3px] border-main-color font-bold text-xl md:text-3xl">← 前の記事</p>
+              <h3 className="text-2xl md:text-4xl">
+                {previous.frontmatter?.title}
+              </h3>
+            </a>
+          </Link>
+        )}
 
-      {next && (
-        <Link to={next.fields?.slug}>
-          <a className="block md:ml-[13vw] w-11/12 md:w-1/2 mx-auto my-4 p-8 border-2 rounded-md text-gray-600">
-            <p className="mb-4 pb-2 border-dotted border-b-[3px] border-main-color font-bold text-xl">次の記事 →</p>
-            <h3 className="text-2xl">
-              {next.frontmatter?.title}
-            </h3>
-          </a>
-        </Link>
-      )}
+        {next && (
+          <Link to={next.fields?.slug}>
+            <a className="block md:ml-[13vw] w-11/12 md:w-1/2 mx-auto my-8 py-6 px-8 border-2 rounded-md text-gray-600 duration-75 hover:bg-gray-100">
+              <p className="mb-4 md:mb-8 pb-2 border-dotted border-b-[3px] border-main-color font-bold text-xl md:text-3xl">次の記事 →</p>
+              <h3 className="text-2xl md:text-4xl">
+                {next.frontmatter?.title}
+              </h3>
+            </a>
+          </Link>
+        )}
+      </div>
     </Layout>
   )
 }
