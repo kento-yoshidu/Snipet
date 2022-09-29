@@ -62,7 +62,7 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
         context: {
           postCount: postCount,
           pageCount: pageCount,
-          totalPageCount: pageCount,
+          // totalPageCount: pageCount,
           skip: 10 * i,
           limit: 10,
           currentPage: i + 1,

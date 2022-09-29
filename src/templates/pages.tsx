@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Header from "../components/Header"
+import PageInfo from "../components/PageInfo"
 import PostList from "../components/PostList"
 
 type Props = {
@@ -27,6 +28,12 @@ const ArticleList = ({ data, pageContext, location }: Props) => (
   <Layout>
     <Header
       pageTitle="記事一覧"
+    />
+
+    <PageInfo
+      currentPage={pageContext.currentPage}
+      postCount={pageContext.postCount}
+      pageCount={pageContext.pageCount}
     />
 
     <PostList

@@ -24,7 +24,7 @@ const PostInfo = ({ postInfo }) => {
         <FontAwesomeIcon icon={faFolder} className="mr-4"/>
 
         <Link to={`/series/${postInfo.seriesSlug}/page/1/`}>
-          <a className="underline">
+          <a className="underline link">
             {postInfo.seriesName}
           </a>
         </Link>
@@ -49,7 +49,7 @@ const PostInfo = ({ postInfo }) => {
         </li>
       </ul>
 
-      <ul className="flex mb-8 text-2xl md:text-3xl items-center">
+      <ul className="flex flex-wrap mb-8 text-2xl md:text-3xl items-center">
         <FontAwesomeIcon
           className="mr-2"
           icon={faTag}
