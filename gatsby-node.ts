@@ -2,6 +2,7 @@ import type { GatsbyNode } from "gatsby"
 import path from "path"
 
 import { createFilePath } from "gatsby-source-filesystem"
+import { useContext } from "react"
 
 const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
@@ -30,6 +31,20 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
                 id
                 fields {
                   slug
+                }
+              }
+            }
+          }
+          # シリーズごとに記事を取得
+          articlesBySeries: allMarkdownRemark(
+            filter: {frontmatter: {published: {eq: true}}}
+            sort: { fields: frontmatter___postdate, order: DESC }
+          ) {
+            group(field: frontmatter___seriesSlug) {
+              fieldValue
+              nodes {
+                frontmatter {
+                  seriesName
                 }
               }
             }
@@ -86,6 +101,32 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
           id: node.id,
           previousPostId,
           nextPostId
+        }
+      })
+    })
+  })
+
+  result.data.articlesBySeries.group.forEach((group) => {
+    const seriesSlug = group.fieldValue
+    const seriesName = group.nodes[0].frontmatter.seriesName
+
+    const postCount = group.nodes.length
+    const pageCount = Math.ceil(postCount / 10)
+
+    Array.from({ length: pageCount }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `/series/${seriesSlug}/page/1/` : `/series/${seriesSlug}/page/${i + 1}`,
+        component: path.resolve("./src/templates/series.tsx"),
+        context: {
+          postCount: postCount,
+          pageCount: pageCount,
+          skip: 10 * i,
+          limit: 10,
+          currentPage: i + 1,
+          isFirst: i + 1 === 1,
+          isLast: i + 1 === pageCount,
+          seriesName: seriesName,
+          seriesSlug: seriesSlug
         }
       })
     })

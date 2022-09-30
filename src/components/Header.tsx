@@ -20,7 +20,7 @@ const Header = ({ pageTitle, pathname }: Props) => {
   )
 
   return (
-    <header className="mt-48 mb-12 md:my-16 text-center">
+    <header className="mt-48 md:mt-40 mb-12 md:mb-20 text-center">
       <h1 className="text-3xl md:text-5xl">
         {pathname === "/page/1/"
             ? <>{title}</>

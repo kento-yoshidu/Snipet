@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Link } from "gatsby"
+import { Link, PageProps } from "gatsby"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -15,7 +15,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
 config.autoAddCss = false
 
-const PostList = ({ postData }: { postData: Queries.AllArticlesQuery }) => (
+const PostList = ({ postData }: { postData: PageProps["data"] }) => (
   <section className="w-11/12 md:w-1/2 mx-auto py-12 my-0">
     {postData.allMarkdownRemark.nodes.map((node) => {
       const [postY, postM, postD] = node?.frontmatter?.postdate?.split("-")

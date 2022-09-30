@@ -3626,6 +3626,15 @@ type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 type SeoQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null, readonly description: string | null } | null } | null };
 
+type SeriesQueryVariables = Exact<{
+  seriesSlug: Scalars['String'];
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+}>;
+
+
+type SeriesQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly postdate: string | null, readonly update: string | null, readonly seriesName: string | null, readonly seriesSlug: string | null, readonly title: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly description: string | null } | null }> } };
+
 type SeriesPageQueryVariables = Exact<{
   seriesSlug: InputMaybe<Scalars['String']>;
 }>;
@@ -3643,7 +3652,7 @@ type TagsPageQuery = { readonly allMarkdownRemark: { readonly group: ReadonlyArr
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type Unnamed_1_Query = { readonly allArticles: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null }> }, readonly allArticlesByGroup: { readonly group: ReadonlyArray<{ readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null }> }> } };
+type Unnamed_1_Query = { readonly allArticles: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null }> }, readonly allArticlesByGroup: { readonly group: ReadonlyArray<{ readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null }> }> }, readonly articlesBySeries: { readonly group: ReadonlyArray<{ readonly fieldValue: string | null, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly seriesName: string | null } | null }> }> } };
 
 
 }
