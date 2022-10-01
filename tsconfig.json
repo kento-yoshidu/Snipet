@@ -12,6 +12,7 @@
     "noEmit": true,
     "skipLibCheck": true,
     "moduleResolution": "node",
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "typeRoots" : ["/src/@types"]
   }
 }
