@@ -19,7 +19,7 @@ const Series = ({ data, pageContext }: { data: Queries.SeriesQuery, pageContext:
     />
 
     <PostList
-      postData={data}
+      postData={data.allMarkdownRemark}
     />
 
     <h1>Series</h1>

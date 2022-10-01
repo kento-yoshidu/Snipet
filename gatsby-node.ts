@@ -2,11 +2,9 @@ import type { GatsbyNode } from "gatsby"
 import path from "path"
 
 import { createFilePath } from "gatsby-source-filesystem"
-import { useContext } from "react"
 
 const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
-
 
   const result = await graphql(
       `
