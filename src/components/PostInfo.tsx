@@ -12,9 +12,10 @@ import {
 
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
+import { Frontmatter } from "../@types/types"
 config.autoAddCss = false
 
-const PostInfo = ({ postInfo }) => {
+const PostInfo = ({ postInfo }: { postInfo: Frontmatter }) => {
   const [postY, postM, postD] = postInfo.postdate.split("-")
   const [updateY, updateM, updateD] = postInfo.update.split("-")
 

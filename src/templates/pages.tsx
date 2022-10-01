@@ -1,30 +1,19 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Header from "../components/Header"
 import PageInfo from "../components/PageInfo"
 import PostList from "../components/PostList"
+import { PageContext } from "../@types/types"
 
 type Props = {
   data: Queries.AllArticlesQuery
-  pageContext: {
-    postCount: number
-    pageCount: number
-    totalPageCount: number
-    skip: number
-    limit: number
-    currentPage: number
-    isFirst: boolean
-    isLast: boolean
-  }
-  location: {
-    pagepath: string
-  }
+  pageContext: PageContext
 }
 
-const ArticleList = ({ data, pageContext, location }: Props) => (
+const ArticleList = ({ data, pageContext }: Props) => (
   <Layout>
     <Header
       pageTitle="記事一覧"
@@ -45,7 +34,7 @@ const ArticleList = ({ data, pageContext, location }: Props) => (
 
 export default ArticleList
 
-export const Head =({ data }: { data: Queries.AllArticlesQuery }) => (
+export const Head =() => (
   <Seo
     title="記事一覧"
     description="test"

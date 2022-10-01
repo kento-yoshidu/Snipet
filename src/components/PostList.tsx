@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Link, PageProps } from "gatsby"
+import { Link } from "gatsby"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -13,9 +13,26 @@ import {
 
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
+import { Frontmatter } from "../@types/types"
 config.autoAddCss = false
 
-const PostList = ({ postData }: { postData: PageProps["data"] }) => (
+interface Node {
+  id: string
+  fields: {
+    slug: string
+  }
+  frontmatter: Frontmatter
+}
+
+interface Props {
+  postData: {
+    allMarkdownRemark: {
+      nodes: Node[]
+    }
+  }
+}
+
+const PostList = ({ postData }: Props) => (
   <section className="w-11/12 md:w-1/2 mx-auto py-12 my-0">
     {postData.allMarkdownRemark.nodes.map((node) => {
       const [postY, postM, postD] = node?.frontmatter?.postdate?.split("-")
