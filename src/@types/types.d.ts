@@ -8,3 +8,14 @@ export interface Frontmatter {
   tags: string[]
   description: string
 }
+
+export interface PageContext {
+  postCount: number
+  pageCount: number
+  totalPageCount: number
+  skip: number
+  limit: number
+  currentPage: number
+  isFirst: boolean
+  isLast: boolean
+}

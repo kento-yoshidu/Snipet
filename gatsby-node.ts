@@ -2,11 +2,11 @@ import type { GatsbyNode } from "gatsby"
 import path from "path"
 
 import { createFilePath } from "gatsby-source-filesystem"
-import { useContext } from "react"
+import { faRedditSquare } from "@fortawesome/free-brands-svg-icons"
+import { faTag } from "@fortawesome/free-solid-svg-icons"
 
 const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
-
 
   const result = await graphql(
       `
@@ -46,6 +46,18 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
                 frontmatter {
                   seriesName
                 }
+              }
+            }
+          }
+          # タグごとに記事を取得
+          articlesByTag: allMarkdownRemark(
+            filter: {frontmatter: {published: {eq: true}}}
+            sort: { fields: frontmatter___postdate, order: DESC }
+          ) {
+            group(field: frontmatter___tags) {
+              fieldValue
+              nodes {
+                id
               }
             }
           }
@@ -127,6 +139,28 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
           isLast: i + 1 === pageCount,
           seriesName: seriesName,
           seriesSlug: seriesSlug
+        }
+      })
+    })
+  })
+
+  result.data.articlesByTag.group.forEach((group) => {
+    const postCount = group.nodes.length
+    const pageCount = Math.ceil(postCount / 10)
+
+    Array.from({ length: pageCount }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `/tag/${group.fieldValue}/page/1/` : `/tag/${group.fieldValue}/page/${i + 1}/`,
+        component: path.resolve("./src/templates/tag.tsx"),
+        context: {
+          postCount,
+          pageCount,
+          skip: i * 10,
+          limit: 10,
+          currentPage: i + 1,
+          isFirst: i === 0,
+          isLast: i + 1 === pageCount,
+          tag: group.fieldValue
         }
       })
     })
