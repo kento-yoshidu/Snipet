@@ -4,35 +4,34 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Header from "../components/Header"
 import PageInfo from "../components/PageInfo"
-import PostList from "../components/PostList"
 
-const Series = ({ data, pageContext }: { data: Queries.SeriesQuery, pageContext: any }) => (
-  <Layout>
-    <Header
-      pageTitle={`${pageContext.seriesName} シリーズの記事`}
-    />
+const Tag = ({ data, pageContext }) => {
+  console.log(data)
 
-    <PageInfo
-      currentPage={pageContext.currentPage}
-      postCount={pageContext.postCount}
-      pageCount={pageContext.pageCount}
-    />
+  return (
+    <Layout>
+      <Header
+        pageTitle={`${pageContext.tag} タグの記事`}
+      />
 
-    <PostList
-      postData={data}
-    />
-  </Layout>
-)
+      <PageInfo
+        currentPage={pageContext.currentPage}
+        postCount={pageContext.postCount}
+        pageCount={pageContext.pageCount}
+      />
+    </Layout>
+  )
+}
 
-export default Series
+export default Tag
 
-export const PageQuery = graphql`
-  query Series(
-    $seriesSlug: String!,
+export const pageQuery = graphql`
+  query Tag(
+    $tag: String!,
     $limit: Int!,
     $skip: Int!
   ) {
-    allMarkdownRemark (
+    allMarkdownRemark(
       sort: {
         fields: [frontmatter___postdate],
         order: DESC
@@ -42,8 +41,8 @@ export const PageQuery = graphql`
       filter: {
         frontmatter: {
           published: { eq: true }
-          seriesSlug: {
-            eq: $seriesSlug
+          tags: {
+            in: [$tag]
           }
         }
       }
