@@ -3633,7 +3633,7 @@ type SeriesQueryVariables = Exact<{
 }>;
 
 
-type SeriesQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly postdate: string | null, readonly update: string | null, readonly seriesName: string | null, readonly seriesSlug: string | null, readonly title: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly description: string | null } | null }> } };
+type SeriesQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly postdate: string | null, readonly update: string | null, readonly seriesName: string | null, readonly seriesSlug: string | null, readonly title: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly description: string | null } | null }> } };
 
 type SeriesPageQueryVariables = Exact<{
   seriesSlug: InputMaybe<Scalars['String']>;
@@ -3649,7 +3649,7 @@ type TagQueryVariables = Exact<{
 }>;
 
 
-type TagQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly postdate: string | null, readonly update: string | null, readonly seriesName: string | null, readonly seriesSlug: string | null, readonly title: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly description: string | null } | null }> } };
+type TagQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly postdate: string | null, readonly update: string | null, readonly seriesName: string | null, readonly seriesSlug: string | null, readonly title: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly description: string | null } | null }> } };
 
 type TagsPageQueryVariables = Exact<{
   tag: InputMaybe<Scalars['String']>;
