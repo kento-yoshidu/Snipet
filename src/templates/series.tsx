@@ -1,12 +1,18 @@
 import React from "react"
 import { graphql } from "gatsby"
 
+import Seo from "../components/seo"
 import Layout from "../components/layout"
 import Header from "../components/Header"
 import PageInfo from "../components/PageInfo"
 import PostList from "../components/PostList"
+import { PageContext } from "../@types/types"
 
-const Series = ({ data, pageContext }: { data: Queries.SeriesQuery, pageContext: any }) => (
+interface SeriesPageContext extends PageContext {
+  seriesName: string
+}
+
+const Series = ({ data, pageContext }: { data: Queries.SeriesQuery, pageContext: SeriesPageContext }) => (
   <Layout>
     <Header
       pageTitle={`${pageContext.seriesName} シリーズの記事`}
@@ -25,6 +31,12 @@ const Series = ({ data, pageContext }: { data: Queries.SeriesQuery, pageContext:
 )
 
 export default Series
+
+export const Head = ({ pageContext: { seriesName } }: { pageContext: { seriesName: string }}) => (
+  <Seo
+    title={`${seriesName} シリーズの記事一覧`}
+  />
+)
 
 export const PageQuery = graphql`
   query Series(
@@ -49,6 +61,7 @@ export const PageQuery = graphql`
       }
     ) {
       nodes {
+        id
         fields {
           slug
         }

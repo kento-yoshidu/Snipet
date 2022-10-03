@@ -60,7 +60,7 @@ const PostInfo = ({ postInfo }: { postInfo: Frontmatter }) => {
             className="mr-6"
             key={`tag${tag}`}
           >
-            <Link to={`/${tag}/page/1/`}>
+            <Link to={`/tag/${tag}/page/1/`}>
               <a className="link">
                 # {tag}
               </a>

@@ -27,7 +27,7 @@ interface Node {
 interface Props {
   postData: {
     allMarkdownRemark: {
-      nodes: Node[]
+      nodes: Readonly<Node[]>
     }
   }
 }

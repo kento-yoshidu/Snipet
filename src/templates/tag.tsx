@@ -1,29 +1,42 @@
 import React from "react"
 import { graphql } from "gatsby"
 
+import Seo from "../components/seo"
 import Layout from "../components/layout"
 import Header from "../components/Header"
 import PageInfo from "../components/PageInfo"
+import PostList from "../components/PostList"
+import { PageContext } from "../@types/types"
 
-const Tag = ({ data, pageContext }) => {
-  console.log(data)
-
-  return (
-    <Layout>
-      <Header
-        pageTitle={`${pageContext.tag} タグの記事`}
-      />
-
-      <PageInfo
-        currentPage={pageContext.currentPage}
-        postCount={pageContext.postCount}
-        pageCount={pageContext.pageCount}
-      />
-    </Layout>
-  )
+interface TagPageContext extends PageContext {
+  tag: string
 }
 
+const Tag = ({ data, pageContext }: { data: Queries.TagQuery, pageContext: TagPageContext }) => (
+  <Layout>
+    <Header
+      pageTitle={`${pageContext.tag} タグの記事`}
+    />
+
+    <PageInfo
+      currentPage={pageContext.currentPage}
+      postCount={pageContext.postCount}
+      pageCount={pageContext.pageCount}
+    />
+
+    <PostList
+      postData={data}
+    />
+  </Layout>
+)
+
 export default Tag
+
+export const Head = ({ pageContext: { tag } }: { pageContext: { tag: string }}) => (
+  <Seo
+    title={`${tag} タグの記事一覧`}
+  />
+)
 
 export const pageQuery = graphql`
   query Tag(
@@ -48,6 +61,7 @@ export const pageQuery = graphql`
       }
     ) {
       nodes {
+        id
         fields {
           slug
         }
