@@ -13,6 +13,7 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "typeRoots" : ["/src/@types"]
+    "typeRoots" : ["/src/@types"],
+    "types": ["@emotion/css/types/index.d.ts"]
   }
 }
