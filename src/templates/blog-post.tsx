@@ -1,14 +1,14 @@
 import * as React from "react"
-import { graphql } from "gatsby"
-
-import Layout from "../components/layout"
-import { Link } from "gatsby"
-
-import * as Styles from "../styles/blog-post.module.scss"
+import { graphql, Link } from "gatsby"
 
 import Seo from "../components/seo"
+import Layout from "../components/layout"
 import Header from "../components/Header"
 import PostInfo from "../components/PostInfo"
+
+import * as Styles from "../styles/blog-post.module.scss"
+import { Richtext } from "../styles/markdownStyle"
+
 
 const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery }) => {
   const { markdownRemark } = data
@@ -24,7 +24,7 @@ const BlogPostTemplate = ({ data }: { data: Queries.BlogPostBySlugQuery }) => {
       />
 
       <article
-        className="blog-post"
+        className={`blog-post ${Richtext}`}
         itemScope
         itemType="http://schema.org/Article"
       >
