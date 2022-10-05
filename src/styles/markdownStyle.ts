@@ -5,7 +5,6 @@ export const Richtext = css`
   h1,
   h2,
   h3 {
-    ${tw`pt-8`}
     ${tw`leading-normal`}
   }
 
@@ -15,7 +14,7 @@ export const Richtext = css`
   }
 
   a:visited {
-    color: #609;
+    ${tw`text-[#660099]`}
   }
 
   h1 {
@@ -24,59 +23,71 @@ export const Richtext = css`
     ${tw`pb-[8px]`}
     ${tw`border-b-[7px]`}
     ${tw`border-main-color`}
-    ${tw`text-6xl`}
+    ${tw`text-4xl`}
+    ${tw`md:text-6xl`}
   }
 
   h2 {
-    margin: 50px 0 20px;
-    padding: 7px 0 7px 2rem;
-    border-left: 9px solid var(--main-color);
-    font-size: clamp(2.1rem, 4.1vw, 3.5rem);
+    ${tw`mt-[50px]`}
+    ${tw`mb-[20px]`}
+    ${tw`border-l-[9px]`}
+    ${tw`border-main-color`}
+    ${tw`text-3xl`}
+    ${tw`md:text-5xl`}
   }
 
   h3 {
-    margin: 30px 0 20px;
-    font-size: 2.8rem;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    ${tw`mt-[30px]`}
+    ${tw`mb-[20px]`}
+    ${tw`text-3xl`}
+    ${tw`md:text-5xl`}
   }
 
   p {
-    ${tw`mb-8`}
-    ${tw`text-3xl`}
+    ${tw`mb-6`}
+    ${tw`md:mb-8`}
+    ${tw`text-2xl`}
+    ${tw`md:text-3xl`}
     ${tw`tracking-wide`}
     ${tw`leading-relaxed`}
     text-indent: 0.8rem
   }
 
   ol {
-    padding: 10px 20px;
+    ${tw`py-[10px]`}
+    ${tw`px-[20px]`}
 
     li {
-      margin-bottom: 10px;
-      font-size: 1.8rem;
-      line-height: 1.5;
+      ${tw`mb-[10px]`}
+      ${tw`text-2xl`}
+      ${tw`md:text-3xl`}
+      ${tw`leading-normal`}
     }
   }
 
   ul {
-    padding: 10px 20px;
-    list-style: none;
+    ${tw`py-6`}
+    ${tw`py-8`}
+    ${tw`list-none`}
 
     li {
-      margin-bottom: 10px;
-      font-size: clamp(1.4rem, 1.65vw, 1.8rem);
-      line-height: 1.5;
+      ${tw`mb-[10px]`}
+      ${tw`text-2xl`}
+      ${tw`md:text-3xl`}
+      ${tw`leading-normal`}
     }
   }
 
   blockquote {
-    position: relative;
-    width: 85%;
-    padding: 18px 30px 18px 60px;
-    margin-top: 12px;
-    margin-left: 1rem;
-    margin-bottom: 20px;
-    background-color: #eee;
+    ${tw`relative`}
+    ${tw`w-5/6`} 
+    ${tw`py-[18px]`}
+    ${tw`pr-[30px]`}
+    ${tw`pl-[60px]`}
+    ${tw`mt-[12px]`}
+    ${tw`ml-[1rem]`}
+    ${tw`mb-[20rem]`}
+    ${tw`bg-neutral-500`}
     border-radius: 3px;
     box-shadow: 0 0 1.5px 1.5px #ddd;
     color: #666;
@@ -88,7 +99,7 @@ export const Richtext = css`
     }
 
     &::before {
-      position: absolute;
+      ${tw`absolute`}
       top: 50%;
       transform: translateY(-40%);
       content: "❝";
@@ -128,6 +139,7 @@ export const Richtext = css`
     margin-bottom: 20px;
     padding: 18px 20px 18px 60px;
     background-color: rgba(#396afc, 0.15);
+    ${tw`bg-red-900`}
     border-radius: 3px;
     box-shadow: 0 0 1.5px 1.5px rgba(#396afc, 0.25);
 
