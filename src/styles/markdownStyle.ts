@@ -80,20 +80,21 @@ export const Richtext = css`
 
   blockquote {
     ${tw`relative`}
-    ${tw`w-5/6`} 
+    ${tw`w-11/12`} 
+    ${tw`md:w-5/6`} 
     ${tw`py-[18px]`}
     ${tw`pr-[30px]`}
     ${tw`pl-[60px]`}
     ${tw`mt-[12px]`}
     ${tw`ml-[1rem]`}
     ${tw`mb-[20rem]`}
-    ${tw`bg-neutral-500`}
+    ${tw`bg-gray-500`}
     border-radius: 3px;
     box-shadow: 0 0 1.5px 1.5px #ddd;
-    color: #666;
+    ${tw`text-gray-600`}
 
     p {
-      margin: 0;
+      ${tw`m-0`}
       font-size: clamp(1.4rem, 2vw, 1.65rem);
       line-height: 1.6;
     }
@@ -144,7 +145,7 @@ export const Richtext = css`
     box-shadow: 0 0 1.5px 1.5px rgba(#396afc, 0.25);
 
     p {
-      margin: 0;
+      ${tw`m-0`}
       font-size: clamp(1.55rem, 2.5vw, 1.7rem);
       line-height: 1.6;
     }
