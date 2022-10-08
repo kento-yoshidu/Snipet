@@ -47,9 +47,9 @@ export const Richtext = css`
     ${tw`mb-6`}
     ${tw`md:mb-8`}
     ${tw`text-2xl`}
-    ${tw`md:text-3xl`}
+    ${tw`md:text-[1.65rem]`}
     ${tw`tracking-wide`}
-    ${tw`leading-relaxed`}
+    ${tw`md:leading-[1.7]`}
     text-indent: 0.8rem
   }
 
@@ -84,28 +84,30 @@ export const Richtext = css`
     ${tw`md:w-5/6`} 
     ${tw`py-[18px]`}
     ${tw`pr-[30px]`}
-    ${tw`pl-[60px]`}
-    ${tw`mt-[12px]`}
-    ${tw`ml-[1rem]`}
-    ${tw`mb-[20rem]`}
-    ${tw`bg-gray-500`}
-    border-radius: 3px;
-    box-shadow: 0 0 1.5px 1.5px #ddd;
+    ${tw`pl-28`}
+    ${tw`mt-12`}
+    ${tw`ml-2`}
+    ${tw`mb-12`}
+    ${tw`bg-gray-200`}
+    ${tw`rounded-lg`}
+    ${tw`shadow-lg`}
     ${tw`text-gray-600`}
 
     p {
       ${tw`m-0`}
-      font-size: clamp(1.4rem, 2vw, 1.65rem);
-      line-height: 1.6;
+      ${tw`text-[1.5rem]`}
+      ${tw`leading-relaxed`}
     }
 
     &::before {
+      ${tw`hidden`}
+      ${tw`md:block`}
       ${tw`absolute`}
-      top: 50%;
+      ${tw`top-1/2`}
       transform: translateY(-40%);
-      content: "❝";
-      font-size: 6rem;
-      color: #999;
+      ${tw`content-['❝']`}
+      ${tw`text-8xl`}
+      ${tw`text-gray-400`}
       margin-left: -50px;
     }
   }
