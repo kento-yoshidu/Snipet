@@ -30,7 +30,10 @@ export const Richtext = css`
   h2 {
     ${tw`mt-[50px]`}
     ${tw`mb-[20px]`}
-    ${tw`border-l-[9px]`}
+    ${tw`pl-4`}
+    ${tw`py-2`}
+    ${tw`border-l-[8px]`}
+    ${tw`md:border-l-[9px]`}
     ${tw`border-main-color`}
     ${tw`text-3xl`}
     ${tw`md:text-5xl`}
@@ -81,15 +84,17 @@ export const Richtext = css`
   blockquote {
     ${tw`relative`}
     ${tw`w-11/12`} 
-    ${tw`md:w-5/6`} 
-    ${tw`py-[18px]`}
-    ${tw`pr-[30px]`}
-    ${tw`pl-28`}
+    ${tw`md:w-full`} 
+    ${tw`py-4`}
+    ${tw`px-8`}
+    ${tw`md:pr-12`}
+    ${tw`md:pl-28`}
     ${tw`mt-12`}
     ${tw`ml-2`}
     ${tw`mb-12`}
     ${tw`bg-gray-200`}
-    ${tw`rounded-lg`}
+    border-left: 6px solid #bbb;
+    ${tw`md:rounded-lg`}
     ${tw`shadow-lg`}
     ${tw`text-gray-600`}
 
@@ -102,18 +107,18 @@ export const Richtext = css`
     &::before {
       ${tw`hidden`}
       ${tw`md:block`}
-      ${tw`absolute`}
-      ${tw`top-1/2`}
+      ${tw`md:absolute`}
+      ${tw`md:top-1/2`}
       transform: translateY(-40%);
-      ${tw`content-['❝']`}
-      ${tw`text-8xl`}
-      ${tw`text-gray-400`}
+      ${tw`md:content-['❝']`}
+      ${tw`md:text-8xl`}
+      ${tw`md:text-gray-400`}
       margin-left: -50px;
     }
   }
 
   table {
-    margin: 40px 0;
+    ${tw`my-10`}
 
     tr {
       th {
@@ -137,8 +142,10 @@ export const Richtext = css`
   }
 
   aside {
-    position: relative;
+    ${tw`relative`}
     width: 85%;
+    ${tw`w-[95%]`}
+    ${tw`md:w-[85%]`}
     margin-bottom: 20px;
     padding: 18px 20px 18px 60px;
     background-color: rgba(#396afc, 0.15);
@@ -153,7 +160,7 @@ export const Richtext = css`
     }
 
     &::before {
-      position: absolute;
+      ${tw`absolute`}
       content: "💡";
       top: 50%;
       transform: translateY(-50%);
