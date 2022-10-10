@@ -9,14 +9,8 @@
   .blog-post {
     margin: 0 auto 50px;
 
-    blockquote {
-      padding: 10px 12px;
-      border-left: 6px solid #bbb;
-      border-radius: 0;
-    }
-
     table {
-      display: block;
+      // display: block;
       overflow-x: scroll;
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
@@ -35,11 +29,6 @@
 
     aside {
       padding: 10px 15px 10px 50px;
-      width: 95%;
-
-      p {
-        line-height: 1.5;
-      }
 
       &::before {
         font-size: 1.5rem;
