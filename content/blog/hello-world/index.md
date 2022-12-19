@@ -27,6 +27,10 @@ You can also write code blocks here!
 const saltyDuckEgg = "chinese preserved food product"
 ```
 
+```ts
+const a = "Hello Gatsby"
+```
+
 | Number | Title                                    | Year |
 | :----- | :--------------------------------------- | ---: |
 | 1      | Harry Potter and the Philosopher’s Stone | 2001 |
