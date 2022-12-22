@@ -5,42 +5,23 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 const BlogIndex = ({ data }: { data: PageProps<Queries.AllPostsQuery> }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
+  const posts = data.allMarkdownRemark.edges
 
   return (
     <Layout>
-      <h1 className="text-red-900">Test</h1>
-
       <ol style={{ listStyle: `none` }}>
         {posts.map((post) => {
-          const title = post.frontmatter.title || post.fields.slug
-
           return (
-            <li key={post.fields.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
-                </header>
+            <li key={post.node.fields.slug}>
+              <header>
+                <h2>
+                  <Link to={post.node.fields.slug} itemProp="url">
+                    {post.node.frontmatter.title}
+                  </Link>
 
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
+                  <time>{post.node.frontmatter.postdate}</time>
+                </h2>
+              </header>
             </li>
           )
         })}
@@ -55,21 +36,16 @@ export const Head = () => <Seo title="All posts" />
 
 export const pageQuery = graphql`
   query AllPosts {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
-      nodes {
-        excerpt
-        fields {
-          slug
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
-          title
-          description
+    allMarkdownRemark(sort: {frontmatter: {postdate: DESC}}) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            postdate(formatString: "YYYY年MM月DD日")
+            title
+          }
         }
       }
     }
