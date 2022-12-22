@@ -3,6 +3,7 @@ import { Link, graphql, PageProps } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import PostList from "../components/postList"
 
 const BlogIndex = ({ data }: PageProps<Queries.AllPostsQuery>) => {
   const posts = data.allMarkdownRemark.edges
@@ -10,21 +11,26 @@ const BlogIndex = ({ data }: PageProps<Queries.AllPostsQuery>) => {
   return (
     <Layout>
       <ol style={{ listStyle: `none` }}>
-        {posts.map((post) => {
-          return (
-            <li key={post?.node?.fields?.slug}>
-              <header>
-                <h2>
+        <div className="w-7/12 mx-auto border shadow-md">
+          {posts.map((post) => {
+            return (
+              /*
                   <Link to={post?.node?.fields?.slug}>
                     {post?.node?.frontmatter?.title}
                   </Link>
 
                   <time>{post?.node?.frontmatter?.postdate}</time>
-                </h2>
-              </header>
-            </li>
-          )
-        })}
+              */
+            <PostList
+              slug={post!.node!.fields!.slug!}
+              title={post!.node!.frontmatter!.title!}
+              postdate={post!.node!.frontmatter!.postdate!}
+              update={post!.node!.frontmatter!.update!}
+              icon={post!.node!.frontmatter!.icon!}
+            />
+            )
+          })}
+        </div>
       </ol>
     </Layout>
   )
@@ -44,7 +50,9 @@ export const pageQuery = graphql`
           }
           frontmatter {
             postdate(formatString: "YYYY年MM月DD日")
+            update(formatString: "YYYY年MM月DD日")
             title
+            icon
           }
         }
       }
