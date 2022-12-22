@@ -2777,7 +2777,7 @@ type WebPOptions = {
 type AllPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type AllPostsQuery = { readonly allMarkdownRemark: { readonly edges: ReadonlyArray<{ readonly node: { readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly postdate: string | null, readonly title: string | null } | null } }> } };
+type AllPostsQuery = { readonly allMarkdownRemark: { readonly edges: ReadonlyArray<{ readonly node: { readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly postdate: string | null, readonly update: string | null, readonly title: string | null, readonly icon: string | null } | null } }> } };
 
 type BlogPostBySlugQueryVariables = Exact<{
   id: Scalars['String'];
