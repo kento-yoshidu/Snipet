@@ -11,7 +11,7 @@ const Footer = () => (
   <footer className="flex justify-center content-center py-6 bg-gray-900">
     <a href="https://github.com/kento-yoshidu">
       <FontAwesomeIcon
-        className="text-white hover:text-neutral-300 text-6xl"
+        className="text-white hover:text-neutral-300 text-5xl"
         icon={faGithub}
       />
     </a>
