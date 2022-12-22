@@ -4,6 +4,8 @@ import { graphql, PageProps } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
+import * as Styles from "../styles/markdown.module.scss"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClock, faRedo, faTag, faCode } from "@fortawesome/free-solid-svg-icons"
 
@@ -19,7 +21,7 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
       <article
         className="w-7/12 border shadow-md mx-auto"
       >
-        <div className="w-10/12 mx-auto">
+        <div className="w-10/12 mx-auto pb-10">
           <main>
             <header className="py-14">
               <p className="mb-8 text-7xl text-center">{post?.frontmatter?.icon}</p>
@@ -42,7 +44,7 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
                   {post?.frontmatter?.update}
                 </time>
 
-                <p className="my-4">
+                <p className="my-1">
                   <FontAwesomeIcon
                     className="mr-2"
                     icon={faCode}
@@ -52,20 +54,21 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
 
                 <ul className="flex gap-4">
                   {post?.frontmatter?.tags?.map((tag) => (
-                    <span>
+                    <li>
                       <FontAwesomeIcon
                         className="mr-2"
                         icon={faTag}
                       />
                       {tag}
-                    </span>
+                    </li>
                   ))}
                 </ul>
               </div>
             </header>
 
             <section
-              dangerouslySetInnerHTML={{ __html: post?.html }}
+              className={Styles.test}
+              dangerouslySetInnerHTML={{ __html: post!.html! }}
               itemProp="articleBody"
             />
             <hr />
