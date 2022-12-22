@@ -1,57 +1,106 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const BlogPostTemplate = ({
-  data: { previous, next, site, markdownRemark: post }
-}) => {
-  const siteTitle = site.siteMetadata?.title || `Title`
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faClock, faRedo, faTag, faCode } from "@fortawesome/free-solid-svg-icons"
+
+import "@fortawesome/fontawesome-svg-core/styles.css"
+import { config } from "@fortawesome/fontawesome-svg-core"
+config.autoAddCss = false
+
+const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
+  const post = data.markdownRemark
 
   return (
     <Layout>
       <article
-        className="w-7/12 border mx-auto"
+        className="w-7/12 border shadow-md mx-auto"
       >
-        <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
-        </header>
+        <div className="w-10/12 mx-auto">
+          <main>
+            <header className="py-14">
+              <p className="mb-8 text-7xl text-center">{post?.frontmatter?.icon}</p>
+              <h1 className="mb-12 text-4xl text-center">{post?.frontmatter?.title}</h1>
 
-        <section
-          dangerouslySetInnerHTML={{ __html: post.html }}
-          itemProp="articleBody"
-        />
-        <hr />
+              <div className="text-neutral-700 text-lg font-bold">
+                <time className="mr-8">
+                  <FontAwesomeIcon
+                    className="mr-2"
+                    icon={faClock}
+                  />
+                  {post?.frontmatter?.postdate}
+                </time>
+
+                <time>
+                  <FontAwesomeIcon
+                    className="mr-2"
+                    icon={faRedo}
+                  />
+                  {post?.frontmatter?.update}
+                </time>
+
+                <p className="my-4">
+                  <FontAwesomeIcon
+                    className="mr-2"
+                    icon={faCode}
+                  />
+                  {post?.frontmatter?.language}
+                </p>
+
+                <ul className="flex gap-4">
+                  {post?.frontmatter?.tags?.map((tag) => (
+                    <span>
+                      <FontAwesomeIcon
+                        className="mr-2"
+                        icon={faTag}
+                      />
+                      {tag}
+                    </span>
+                  ))}
+                </ul>
+              </div>
+            </header>
+
+            <section
+              dangerouslySetInnerHTML={{ __html: post?.html }}
+              itemProp="articleBody"
+            />
+            <hr />
+          </main>
+
+          <nav className="blog-post-nav">
+            <ul
+              style={{
+                display: `flex`,
+                flexWrap: `wrap`,
+                justifyContent: `space-between`,
+                listStyle: `none`,
+                padding: 0,
+              }}
+            >
+              {/*
+              <li>
+                {previous && (
+                  <Link to={previous.fields.slug} rel="prev">
+                    ← {previous.frontmatter.title}
+                  </Link>
+                )}
+              </li>
+              <li>
+                {next && (
+                  <Link to={next.fields.slug} rel="next">
+                    {next.frontmatter.title} →
+                  </Link>
+                )}
+              </li>
+                */}
+            </ul>
+          </nav>
+        </div>
       </article>
-
-      <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav>
     </Layout>
   )
 }
@@ -73,19 +122,16 @@ export const pageQuery = graphql`
     $previousPostId: String
     $nextPostId: String
   ) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     markdownRemark(id: { eq: $id }) {
-      id
-      excerpt(pruneLength: 160)
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        postdate(formatString: "YYYY年MM月DD日")
+        update(formatString: "YYYY年MM月DD日")
+        language
         description
+        tags
+        icon
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

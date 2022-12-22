@@ -4,7 +4,7 @@ import { Link, graphql, PageProps } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const BlogIndex = ({ data }: { data: PageProps<Queries.AllPostsQuery> }) => {
+const BlogIndex = ({ data }: PageProps<Queries.AllPostsQuery>) => {
   const posts = data.allMarkdownRemark.edges
 
   return (
@@ -12,14 +12,14 @@ const BlogIndex = ({ data }: { data: PageProps<Queries.AllPostsQuery> }) => {
       <ol style={{ listStyle: `none` }}>
         {posts.map((post) => {
           return (
-            <li key={post.node.fields.slug}>
+            <li key={post?.node?.fields?.slug}>
               <header>
                 <h2>
-                  <Link to={post.node.fields.slug} itemProp="url">
-                    {post.node.frontmatter.title}
+                  <Link to={post?.node?.fields?.slug}>
+                    {post?.node?.frontmatter?.title}
                   </Link>
 
-                  <time>{post.node.frontmatter.postdate}</time>
+                  <time>{post?.node?.frontmatter?.postdate}</time>
                 </h2>
               </header>
             </li>
