@@ -2,6 +2,7 @@
 title: Hello World
 postdate: "2023-01-02"
 description: "Hello World"
+tags: ["Rust", "配列"]
 ---
 
 ![Chinese Salty Egg](./salty_egg.jpg)

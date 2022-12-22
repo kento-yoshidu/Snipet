@@ -2819,6 +2819,11 @@ type NotFoundQueryVariables = Exact<{ [key: string]: never; }>;
 
 type NotFoundQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null } | null } | null };
 
+type TagsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type TagsQuery = { readonly allMarkdownRemark: { readonly group: ReadonlyArray<{ readonly fieldValue: string | null, readonly totalCount: number }> } };
+
 type ResultQueryVariables = Exact<{ [key: string]: never; }>;
 
 
