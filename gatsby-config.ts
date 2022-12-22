@@ -23,6 +23,7 @@ module.exports = {
   graphqlTypegen: true,
   plugins: [
     `gatsby-plugin-postcss`,
+    `gatsby-plugin-sass`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
