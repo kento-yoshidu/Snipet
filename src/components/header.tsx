@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 
 const Header = () => (
-  <header className="w-screen h-[60px] relative md:fixed top-0 flex justify-center z-50 bg-white shadow">
+  <header className="w-screen h-[60px] relative md:fixed top-0 flex justify-center z-50 bg-white shadow-md">
     <h1 className="leading-[60px] text-sm">
       <Link to="/">
         <a className="md:text-xl font-bold hover:text-gray-500">
