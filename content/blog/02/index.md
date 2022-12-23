@@ -1,8 +1,11 @@
 ---
-title: Hello World
+title: "【Rust】文字列を生成する"
 postdate: "2023-01-02"
+update: "2023-01-02"
 description: "Hello World"
+language: Rust
 tags: ["Rust", "配列"]
+icon: "🍧"
 ---
 
 ![Chinese Salty Egg](./salty_egg.jpg)

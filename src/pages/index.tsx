@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, graphql, PageProps } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -12,15 +12,7 @@ const BlogIndex = ({ data }: PageProps<Queries.AllPostsQuery>) => {
     <Layout>
       <ol style={{ listStyle: `none` }}>
         <div className="w-7/12 mx-auto border shadow-md">
-          {posts.map((post) => {
-            return (
-              /*
-                  <Link to={post?.node?.fields?.slug}>
-                    {post?.node?.frontmatter?.title}
-                  </Link>
-
-                  <time>{post?.node?.frontmatter?.postdate}</time>
-              */
+          {posts.map((post) => (
             <PostList
               slug={post!.node!.fields!.slug!}
               title={post!.node!.frontmatter!.title!}
@@ -28,8 +20,7 @@ const BlogIndex = ({ data }: PageProps<Queries.AllPostsQuery>) => {
               update={post!.node!.frontmatter!.update!}
               icon={post!.node!.frontmatter!.icon!}
             />
-            )
-          })}
+          ))}
         </div>
       </ol>
     </Layout>
