@@ -24,10 +24,10 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
         <div className="w-10/12 mx-auto pb-10">
           <main>
             <header className="py-14">
-              <p className="mb-8 text-7xl text-center">{post?.frontmatter?.icon}</p>
+              <p className="mb-12 text-7xl text-center">{post?.frontmatter?.icon}</p>
               <h1 className="mb-12 text-4xl text-center">{post?.frontmatter?.title}</h1>
 
-              <div className="text-neutral-700 text-lg font-bold">
+              <div className="text-neutral-700 text-lg font-bold tracking-wider">
                 <time className="mr-8">
                   <FontAwesomeIcon
                     className="mr-2"
@@ -54,7 +54,7 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
 
                 <ul className="flex gap-4">
                   {post?.frontmatter?.tags?.map((tag) => (
-                    <li>
+                    <li key={`${tag}`}>
                       <FontAwesomeIcon
                         className="mr-2"
                         icon={faTag}

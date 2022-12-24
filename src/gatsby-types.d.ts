@@ -2824,10 +2824,10 @@ type TagsQueryVariables = Exact<{ [key: string]: never; }>;
 
 type TagsQuery = { readonly allMarkdownRemark: { readonly group: ReadonlyArray<{ readonly fieldValue: string | null, readonly totalCount: number }> } };
 
-type ResultQueryVariables = Exact<{ [key: string]: never; }>;
+type AllArticlesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type ResultQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null }> } };
+type AllArticlesQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null }> } };
 
 
 }

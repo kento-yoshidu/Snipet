@@ -5,7 +5,6 @@ import Layout from "../components/layout"
 
 const Tags = ({ data }: PageProps<Queries.TagsQuery>) => {
   const groups = data.allMarkdownRemark.group
-  console.log(groups)
 
   return (
     <Layout>
