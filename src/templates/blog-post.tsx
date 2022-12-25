@@ -19,16 +19,16 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
   return (
     <Layout>
       <article
-        className="w-7/12 border shadow-md mx-auto"
+        className="w-11/12 md:w-7/12 border shadow-md mx-auto"
       >
-        <div className="w-10/12 mx-auto pb-10">
+        <div className="w-10/12 mx-auto pb-10 font-bold">
           <main>
-            <header className="py-14">
-              <p className="mb-12 text-7xl text-center">{post?.frontmatter?.icon}</p>
-              <h1 className="mb-12 text-4xl text-center">{post?.frontmatter?.title}</h1>
+            <header className="py-10 md:py-14">
+              <p className="mb-8 md:mb-12 text-5xl md:text-7xl text-center">{post?.frontmatter?.icon}</p>
+              <h1 className="mb-8 md:mb-12 text-xl md:text-4xl text-center">{post?.frontmatter?.title}</h1>
 
-              <div className="text-neutral-700 text-lg font-bold tracking-wider">
-                <time className="mr-8">
+              <div className="text-neutral-700 text-sm md:text-md md:text-lg font-bold tracking-wider">
+                <time className="block md:inline md:mr-8">
                   <FontAwesomeIcon
                     className="mr-2"
                     icon={faClock}

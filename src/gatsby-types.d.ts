@@ -2777,7 +2777,7 @@ type WebPOptions = {
 type AllPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type AllPostsQuery = { readonly allMarkdownRemark: { readonly edges: ReadonlyArray<{ readonly node: { readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly postdate: string | null, readonly update: string | null, readonly title: string | null, readonly icon: string | null } | null } }> } };
+type AllPostsQuery = { readonly allMarkdownRemark: { readonly edges: ReadonlyArray<{ readonly node: { readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly update: string | null, readonly language: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly icon: string | null } | null } }> } };
 
 type BlogPostBySlugQueryVariables = Exact<{
   id: Scalars['String'];
@@ -2814,10 +2814,14 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: st
 
 type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
 
-type NotFoundQueryVariables = Exact<{ [key: string]: never; }>;
+type TagQueryVariables = Exact<{
+  tag: Scalars['String'];
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+}>;
 
 
-type NotFoundQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null } | null } | null };
+type TagQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly postdate: string | null, readonly update: string | null, readonly title: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly icon: string | null } | null }> } };
 
 type TagsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2828,6 +2832,11 @@ type AllArticlesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type AllArticlesQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null }> } };
+
+type articlesByTagQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type articlesByTagQuery = { readonly allMarkdownRemark: { readonly group: ReadonlyArray<{ readonly fieldValue: string | null, readonly edges: ReadonlyArray<{ readonly node: { readonly id: string } }> }> } };
 
 
 }

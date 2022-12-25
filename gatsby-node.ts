@@ -40,6 +40,45 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
       }
     })
   })
+
+  const artcilesByTag = await graphql(`
+    query articlesByTag{
+      allMarkdownRemark {
+        group(field: {frontmatter: {tags: SELECT}}) {
+          fieldValue
+          edges {
+            node {
+              id
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  artcilesByTag.data.allMarkdownRemark.group.map((tag) => {
+    const postCount = tag.edges.length
+    const pageCount = Math.ceil(postCount / 10)
+
+    console.log("tag is", tag.fieldValue)
+
+    Array.from({ length: pageCount }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `/tag/${tag.fieldValue}/page/1/` : `/tag/${tag.fieldValue}/page/${i + 1}}`,
+        component: path.resolve("./src/templates/tag.tsx"),
+        context: {
+          postCount: postCount,
+          pageCount: pageCount,
+          skip: 10 * i,
+          limit: 10,
+          currentPage: i + 1,
+          isFirst: i === 0,
+          isLast: i + 1 === pageCount,
+          tag: tag.fieldValue
+        }
+      })
+    })
+  })
 }
 
 const onCreateNode: GatsbyNode["onCreateNode"] = ({ node, actions, getNode }) => {
