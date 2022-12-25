@@ -11,19 +11,17 @@ const BlogIndex = ({ data }: PageProps<Queries.AllPostsQuery>) => {
   return (
     <Layout>
       <ol style={{ listStyle: `none` }}>
-        <div className="w-11/12 md:w-7/12 mx-auto border shadow-md">
-          {posts.map((post) => (
-            <PostList
-              slug={post!.node!.fields!.slug!}
-              title={post!.node!.frontmatter!.title!}
-              postdate={post!.node!.frontmatter!.postdate!}
-              update={post!.node!.frontmatter!.update!}
-              language={post!.node!.frontmatter!.language!}
-              tags={post!.node!.frontmatter!.tags!}
-              icon={post!.node!.frontmatter!.icon!}
-            />
-          ))}
-        </div>
+        {posts.map((post) => (
+          <PostList
+            slug={post!.node!.fields!.slug!}
+            title={post!.node!.frontmatter!.title!}
+            postdate={post!.node!.frontmatter!.postdate!}
+            update={post!.node!.frontmatter!.update!}
+            language={post!.node!.frontmatter!.language!}
+            tags={post!.node!.frontmatter!.tags!}
+            icon={post!.node!.frontmatter!.icon!}
+          />
+        ))}
       </ol>
     </Layout>
   )

@@ -60,8 +60,6 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
     const postCount = tag.edges.length
     const pageCount = Math.ceil(postCount / 10)
 
-    console.log("tag is", tag.fieldValue)
-
     Array.from({ length: pageCount }).forEach((_, i) => {
       createPage({
         path: i === 0 ? `/tag/${tag.fieldValue}/page/1/` : `/tag/${tag.fieldValue}/page/${i + 1}}`,
