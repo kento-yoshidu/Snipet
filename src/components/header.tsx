@@ -15,7 +15,7 @@ const Header = () => (
       <li className="md:text-xl font-bold">
         <Link to="/tags/">
           <a className="hidden md:block md:leading-[60px] hover:text-gray-500 underline">
-            🏷 タグ一覧
+            🔖 タグ一覧
           </a>
         </Link>
       </li>
