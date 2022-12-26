@@ -18,92 +18,88 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
 
   return (
     <Layout>
-      <article
-        className="w-11/12 md:w-7/12 border shadow-md mx-auto"
-      >
-        <div className="w-10/12 mx-auto pb-10 font-bold">
-          <main>
-            <header className="py-10 md:py-14">
-              <p className="mb-8 md:mb-12 text-5xl md:text-7xl text-center">{post?.frontmatter?.icon}</p>
-              <h1 className="mb-8 md:mb-12 text-xl md:text-4xl text-center">{post?.frontmatter?.title}</h1>
+      <div className="w-10/12 mx-auto pb-10 font-bold">
+        <main>
+          <header className="py-10 md:py-14">
+            <p className="mb-8 md:mb-12 text-5xl md:text-7xl text-center">{post?.frontmatter?.icon}</p>
+            <h1 className="mb-8 md:mb-12 text-xl md:text-4xl text-center">{post?.frontmatter?.title}</h1>
 
-              <div className="text-neutral-700 text-sm md:text-md md:text-lg font-bold tracking-wider">
-                <time className="block md:inline md:mr-8">
-                  <FontAwesomeIcon
-                    className="mr-2"
-                    icon={faClock}
-                  />
-                  {post?.frontmatter?.postdate}
-                </time>
+            <div className="text-neutral-700 text-sm md:text-md md:text-lg font-bold tracking-wider">
+              <time className="block md:inline md:mr-8">
+                <FontAwesomeIcon
+                  className="mr-2"
+                  icon={faClock}
+                />
+                {post?.frontmatter?.postdate}
+              </time>
 
-                <time>
-                  <FontAwesomeIcon
-                    className="mr-2"
-                    icon={faRedo}
-                  />
-                  {post?.frontmatter?.update}
-                </time>
+              <time>
+                <FontAwesomeIcon
+                  className="mr-2"
+                  icon={faRedo}
+                />
+                {post?.frontmatter?.update}
+              </time>
 
-                <p className="my-1">
-                  <FontAwesomeIcon
-                    className="mr-2"
-                    icon={faCode}
-                  />
-                  {post?.frontmatter?.language}
-                </p>
+              <p className="my-1">
+                <FontAwesomeIcon
+                  className="mr-2"
+                  icon={faCode}
+                />
+                {post?.frontmatter?.language}
+              </p>
 
-                <ul className="flex gap-4">
-                  {post?.frontmatter?.tags?.map((tag) => (
-                    <li key={`${tag}`}>
-                      <FontAwesomeIcon
-                        className="mr-2"
-                        icon={faTag}
-                      />
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </header>
+              <ul className="flex gap-4">
+                {post?.frontmatter?.tags?.map((tag) => (
+                  <li key={`${tag}`}>
+                    <FontAwesomeIcon
+                      className="mr-2"
+                      icon={faTag}
+                    />
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </header>
 
-            <section
-              className={Styles.test}
-              dangerouslySetInnerHTML={{ __html: post!.html! }}
-              itemProp="articleBody"
-            />
-            <hr />
-          </main>
+          <section
+            className={Styles.test}
+            dangerouslySetInnerHTML={{ __html: post!.html! }}
+            itemProp="articleBody"
+          />
+          <hr />
+        </main>
 
-          <nav className="blog-post-nav">
-            <ul
-              style={{
-                display: `flex`,
-                flexWrap: `wrap`,
-                justifyContent: `space-between`,
-                listStyle: `none`,
-                padding: 0,
-              }}
-            >
-              {/*
-              <li>
-                {previous && (
-                  <Link to={previous.fields.slug} rel="prev">
-                    ← {previous.frontmatter.title}
-                  </Link>
-                )}
-              </li>
-              <li>
-                {next && (
-                  <Link to={next.fields.slug} rel="next">
-                    {next.frontmatter.title} →
-                  </Link>
-                )}
-              </li>
-                */}
-            </ul>
-          </nav>
-        </div>
-      </article>
+        <nav className="blog-post-nav">
+          <ul
+            style={{
+              display: `flex`,
+              flexWrap: `wrap`,
+              justifyContent: `space-between`,
+              listStyle: `none`,
+              padding: 0,
+            }}
+          >
+            {/*
+            <li>
+              {previous && (
+                <Link to={previous.fields.slug} rel="prev">
+                  ← {previous.frontmatter.title}
+                </Link>
+              )}
+            </li>
+            <li>
+              {next && (
+                <Link to={next.fields.slug} rel="next">
+                  {next.frontmatter.title} →
+                </Link>
+              )}
+            </li>
+              */}
+          </ul>
+        </nav>
+      </div>
     </Layout>
   )
 }

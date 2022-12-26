@@ -1,12 +1,13 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-const Tag = ({ data, pageContext }) => {
-  console.log(pageContext)
-  console.log("data is", data)
+import Layout from "../components/layout"
 
+const Tag = ({ data, pageContext }) => {
   return (
-    <h1>Tag</h1>
+    <Layout>
+      <h1>Tag</h1>
+    </Layout>
   )
 }
 
