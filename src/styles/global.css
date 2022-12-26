@@ -11,7 +11,7 @@ html {
     Verdana,
     Meiryo,
     sans-serif;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 }
 
 a {

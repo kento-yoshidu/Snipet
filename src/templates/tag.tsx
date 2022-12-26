@@ -2,32 +2,30 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
+import PostList from "../components/postList"
 
 const Tag = ({ data, pageContext }) => {
+  const { nodes } = data.allMarkdownRemark
+
+  console.log(nodes)
   return (
     <Layout>
-      <h1>Tag</h1>
+      {nodes.map((node) => (
+        <PostList
+          slug={node.fields.slug}
+          title={node.frontmatter.title}
+          postdate={node.frontmatter.postdate}
+          update={node.frontmatter.update}
+          language={node.frontmatter.language}
+          tags={node.frontmatter.tags}
+          icon={node.frontmatter.icon}
+        />
+      )) }
     </Layout>
   )
 }
 
 export default Tag
-
-/*
-export const pageQuery = graphql`
-  query Tag{
-    allMarkdownRemark(
-      filter: {frontmatter: {tags: {in: "JavaScript"}}}
-    ) {
-      nodes {
-        fields {
-          slug
-        }
-      }
-    }
-  }
-`
-*/
 
 export const pageQuery = graphql`
   query Tag(
@@ -50,9 +48,10 @@ export const pageQuery = graphql`
           slug
         }
         frontmatter {
+          title
           postdate(formatString: "YYYY-MM-DD")
           update(formatString: "YYYY-MM-DD")
-          title
+          language
           tags
           icon
         }

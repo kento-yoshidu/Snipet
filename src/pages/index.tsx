@@ -3,6 +3,7 @@ import { graphql, PageProps } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import PageTitle from "../components/pageTitle"
 import PostList from "../components/postList"
 
 const BlogIndex = ({ data }: PageProps<Queries.AllPostsQuery>) => {
@@ -10,6 +11,11 @@ const BlogIndex = ({ data }: PageProps<Queries.AllPostsQuery>) => {
 
   return (
     <Layout>
+      <PageTitle
+        title="記事一覧"
+        count={posts.length} 
+      />
+
       <ol style={{ listStyle: `none` }}>
         {posts.map((post) => (
           <PostList

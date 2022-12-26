@@ -2821,7 +2821,7 @@ type TagQueryVariables = Exact<{
 }>;
 
 
-type TagQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly postdate: string | null, readonly update: string | null, readonly title: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly icon: string | null } | null }> } };
+type TagQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly update: string | null, readonly language: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly icon: string | null } | null }> } };
 
 type TagsQueryVariables = Exact<{ [key: string]: never; }>;
 

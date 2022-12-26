@@ -1,5 +1,5 @@
-import * as React from "react"
-import { graphql, PageProps } from "gatsby"
+import React from "react"
+import { Link, graphql, PageProps } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -15,13 +15,15 @@ config.autoAddCss = false
 
 const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
   const post = data.markdownRemark
+  const { previous, next } = data
 
   return (
     <Layout>
       <div className="w-10/12 mx-auto pb-10 font-bold">
         <main>
-          <header className="py-10 md:py-14">
+          <header className="py-10 md:py-8">
             <p className="mb-8 md:mb-12 text-5xl md:text-7xl text-center">{post?.frontmatter?.icon}</p>
+
             <h1 className="mb-8 md:mb-12 text-xl md:text-4xl text-center">{post?.frontmatter?.title}</h1>
 
             <div className="text-neutral-700 text-sm md:text-md md:text-lg font-bold tracking-wider">
@@ -52,11 +54,13 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
               <ul className="flex gap-4">
                 {post?.frontmatter?.tags?.map((tag) => (
                   <li key={`${tag}`}>
-                    <FontAwesomeIcon
-                      className="mr-2"
-                      icon={faTag}
-                    />
-                    {tag}
+                    <Link to={`/tag/${tag}/page/1/`}>
+                      <FontAwesomeIcon
+                        className="mr-2"
+                        icon={faTag}
+                      />
+                      {tag}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -68,35 +72,34 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
             dangerouslySetInnerHTML={{ __html: post!.html! }}
             itemProp="articleBody"
           />
-          <hr />
         </main>
 
-        <nav className="blog-post-nav">
+        <nav className="mt-20">
           <ul
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              justifyContent: `space-between`,
-              listStyle: `none`,
-              padding: 0,
-            }}
+            className="flex justify-between"
           >
-            {/*
             <li>
               {previous && (
-                <Link to={previous.fields.slug} rel="prev">
-                  ← {previous.frontmatter.title}
+                <Link
+                  className="text-xl"
+                  to={previous!.fields!.slug!}
+                  rel="prev"
+                >
+                  ← {previous?.frontmatter?.title}
                 </Link>
               )}
             </li>
             <li>
               {next && (
-                <Link to={next.fields.slug} rel="next">
-                  {next.frontmatter.title} →
+                <Link
+                  className="text-xl"
+                  to={next!.fields!.slug!}
+                  rel="next"
+                >
+                  {next?.frontmatter?.title} →
                 </Link>
               )}
             </li>
-              */}
           </ul>
         </nav>
       </div>

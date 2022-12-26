@@ -1,9 +1,10 @@
 .test {
+  margin-top: 50px;
   color: #444;
   
   h1 {
     margin-bottom: 30px;
     border-bottom: 5px solid #444;
-    font-size: clamp(1.2rem, 3vw, 3rem);
+    font-size: clamp(1.2rem, 3vw, 2.5rem);
   }
 }
