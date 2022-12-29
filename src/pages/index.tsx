@@ -23,7 +23,6 @@ const BlogIndex = ({ data }: PageProps<Queries.AllPostsQuery>) => {
             title={post!.node!.frontmatter!.title!}
             postdate={post!.node!.frontmatter!.postdate!}
             update={post!.node!.frontmatter!.update!}
-            language={post!.node!.frontmatter!.language!}
             tags={post!.node!.frontmatter!.tags!}
             icon={post!.node!.frontmatter!.icon!}
           />
@@ -49,7 +48,6 @@ export const pageQuery = graphql`
             title
             postdate(formatString: "YYYY年MM月DD日")
             update(formatString: "YYYY年MM月DD日")
-            language
             tags
             icon
           }

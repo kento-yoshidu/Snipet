@@ -18,7 +18,7 @@ type Props = {
   icon: string
 }
 
-const PostList = ({ slug, title, postdate, update, language, tags, icon }: Props) => {
+const PostList = ({ slug, title, postdate, update, tags, icon }: Props) => {
   return (
     <div className="border-2 rounded-md w-5/6 mx-auto mb-10 py-8 px-14 flex items-center font-bold">
       <p className="mr-10 text-6xl">{icon}</p>
@@ -38,13 +38,6 @@ const PostList = ({ slug, title, postdate, update, language, tags, icon }: Props
             {update}
           </time>
         </div>
-
-        <p className="mb-3">
-          <Link to={`/language/${language}/page/1/`}>
-            <FontAwesomeIcon icon={faCode} className="mr-2" />
-            {language}
-          </Link>
-        </p>
 
         <ul className="flex gap-4">
           {tags.map((tag) => (
