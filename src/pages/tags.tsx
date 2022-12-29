@@ -2,13 +2,16 @@ import React from "react"
 import { Link, graphql, PageProps } from "gatsby"
 
 import Layout from "../components/layout"
+import PageTitle from "../components/pageTitle"
 
 const Tags = ({ data }: PageProps<Queries.TagsQuery>) => {
   const groups = data.allMarkdownRemark.group
 
   return (
     <Layout>
-      <h1 className="text-4xl text-center">🏷 タグ一覧</h1>
+      <PageTitle
+        title="タグ一覧"
+      />
 
       <ul className="flex flex-wrap gap-8 w-4/5 my-20 mx-auto">
         {groups.map((group) => (

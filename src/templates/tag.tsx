@@ -1,24 +1,22 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 
 import Layout from "../components/layout"
 import PostList from "../components/postList"
 
-const Tag = ({ data, pageContext }) => {
+const Tag = ({ data }: PageProps<Queries.TagQuery>) => {
   const { nodes } = data.allMarkdownRemark
 
-  console.log(nodes)
   return (
     <Layout>
       {nodes.map((node) => (
         <PostList
-          slug={node.fields.slug}
-          title={node.frontmatter.title}
-          postdate={node.frontmatter.postdate}
-          update={node.frontmatter.update}
-          language={node.frontmatter.language}
-          tags={node.frontmatter.tags}
-          icon={node.frontmatter.icon}
+          slug={node!.fields!.slug!}
+          title={node!.frontmatter!.title!}
+          postdate={node!.frontmatter!.postdate!}
+          update={node!.frontmatter!.update!}
+          tags={node!.frontmatter!.tags!}
+          icon={node!.frontmatter!.icon!}
         />
       )) }
     </Layout>
@@ -51,7 +49,6 @@ export const pageQuery = graphql`
           title
           postdate(formatString: "YYYY-MM-DD")
           update(formatString: "YYYY-MM-DD")
-          language
           tags
           icon
         }

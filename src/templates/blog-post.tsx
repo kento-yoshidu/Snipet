@@ -43,15 +43,7 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
                 {post?.frontmatter?.update}
               </time>
 
-              <p className="my-1">
-                <FontAwesomeIcon
-                  className="mr-2"
-                  icon={faCode}
-                />
-                {post?.frontmatter?.language}
-              </p>
-
-              <ul className="flex gap-4">
+              <ul className="flex gap-4 mt-4">
                 {post?.frontmatter?.tags?.map((tag) => (
                   <li key={`${tag}`}>
                     <Link to={`/tag/${tag}/page/1/`}>
@@ -130,7 +122,6 @@ export const pageQuery = graphql`
         title
         postdate(formatString: "YYYY年MM月DD日")
         update(formatString: "YYYY年MM月DD日")
-        language
         description
         tags
         icon

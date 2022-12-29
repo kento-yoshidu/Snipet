@@ -2,7 +2,6 @@
 title: "【JS】配列の重複を扱う"
 postdate: "2023-01-01"
 update: "2023-01-01"
-language: "JavaScript"
 description: "Hello World"
 tags: ["JavaScript", "配列"]
 icon: "🧸"
