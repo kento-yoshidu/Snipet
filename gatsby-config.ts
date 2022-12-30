@@ -124,5 +124,17 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: "gatsby-plugin-typegen",
+      options: {
+        emitSchema: {
+          "src/__generated__/gatsby-schema.graphql": true,
+          "src/__generated__/gatsby-introspection.json": true
+        },
+        emitPluginDocuments: {
+          "src/__generated__/gatsby-plugin-documents.graphql": true
+        }
+      }
+    },
   ],
 }
