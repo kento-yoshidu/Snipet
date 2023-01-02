@@ -46,8 +46,8 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
-            postdate(formatString: "YYYY年MM月DD日")
-            update(formatString: "YYYY年MM月DD日")
+            postdate
+            update
             tags
             icon
           }

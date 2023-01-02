@@ -19,6 +19,9 @@ type Props = {
 }
 
 const PostList = ({ slug, title, postdate, update, tags, icon }: Props) => {
+  const [postY, postM, postD] = postdate.split("-")
+  const [updateY, updateM, updateD] = update.split("-")
+
   return (
     <div className="border-2 rounded-md w-5/6 mx-auto mb-10 py-8 px-14 flex items-center font-bold">
       <p className="mr-10 text-6xl">{icon}</p>
@@ -29,19 +32,24 @@ const PostList = ({ slug, title, postdate, update, tags, icon }: Props) => {
         </Link>
 
         <div className="mb-3 text-md">
-          <time className="mr-8">
+          <time
+            dateTime={postdate}
+            className="mr-8"
+          >
             <FontAwesomeIcon icon={faClock} className="mr-2"/>
-            {postdate}
+            {`${postY}年${postM}月${postD}日`}
           </time>
-          <time>
+          <time
+            dateTime={update}
+          >
             <FontAwesomeIcon icon={faClock} className="mr-2"/>
-            {update}
+            {`${updateY}年${updateM}月${updateD}日`}
           </time>
         </div>
 
         <ul className="flex gap-4">
           {tags.map((tag) => (
-            <li>
+            <li key={tag}>
               <Link to={`/tag/${tag}/page/1/`}>
                 <FontAwesomeIcon icon={faTag} className="mr-2" />
                 {tag}
