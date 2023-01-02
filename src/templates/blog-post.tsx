@@ -17,6 +17,9 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
   const post = data.markdownRemark
   const { previous, next } = data
 
+  const [postY, postM, postD] = post!.frontmatter!.postdate!.split("-")
+  const [updateY, updateM, updateD] = post!.frontmatter!.update!.split("-")
+
   return (
     <Layout>
       <div className="w-10/12 mx-auto pb-10 font-bold">
@@ -27,20 +30,25 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
             <h1 className="mb-8 md:mb-12 text-xl md:text-4xl text-center">{post?.frontmatter?.title}</h1>
 
             <div className="text-neutral-700 text-sm md:text-md md:text-lg font-bold tracking-wider">
-              <time className="block md:inline md:mr-8">
+              <time
+                dateTime={post?.frontmatter?.postdate!}
+                className="block md:inline md:mr-8"
+              >
                 <FontAwesomeIcon
                   className="mr-2"
                   icon={faClock}
                 />
-                {post?.frontmatter?.postdate}
+                {`${postY}年${postM}月${postD}日`}
               </time>
 
-              <time>
+              <time
+                dateTime={post?.frontmatter?.update!}
+              >
                 <FontAwesomeIcon
                   className="mr-2"
                   icon={faRedo}
                 />
-                {post?.frontmatter?.update}
+                {`${updateY}年${updateM}月${updateD}日`}
               </time>
 
               <ul className="flex gap-4 mt-4">
@@ -120,8 +128,8 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        postdate(formatString: "YYYY年MM月DD日")
-        update(formatString: "YYYY年MM月DD日")
+        postdate
+        update
         description
         tags
         icon
