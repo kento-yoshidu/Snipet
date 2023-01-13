@@ -4,7 +4,7 @@ import { Link, graphql, PageProps } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-import * as Styles from "../styles/markdown.module.scss"
+import * as Styles from "../styles/markdown.module.css"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClock, faRedo, faTag, faCode } from "@fortawesome/free-solid-svg-icons"
@@ -22,57 +22,55 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostBySlugQuery>) => {
 
   return (
     <Layout>
-      <div className="w-10/12 mx-auto pb-10 font-bold">
-        <main>
-          <header className="py-10 md:py-8">
-            <p className="mb-8 md:mb-12 text-5xl md:text-7xl text-center">{post?.frontmatter?.icon}</p>
+      <div className="w-10/12 mx-auto font-bold">
+        <header className="py-10 md:py-8">
+          <p className="mb-8 md:mb-12 text-5xl md:text-7xl text-center">{post?.frontmatter?.icon}</p>
 
-            <h1 className="mb-8 md:mb-12 text-xl md:text-4xl text-center">{post?.frontmatter?.title}</h1>
+          <h1 className="mb-8 md:mb-12 text-xl md:text-4xl text-center">{post?.frontmatter?.title}</h1>
 
-            <div className="text-neutral-700 text-sm md:text-md md:text-lg font-bold tracking-wider">
-              <time
-                dateTime={post?.frontmatter?.postdate!}
-                className="block md:inline md:mr-8"
-              >
-                <FontAwesomeIcon
-                  className="mr-2"
-                  icon={faClock}
-                />
-                {`${postY}年${postM}月${postD}日`}
-              </time>
+          <div className="text-neutral-700 text-sm md:text-md md:text-lg font-bold tracking-wider">
+            <time
+              dateTime={post?.frontmatter?.postdate!}
+              className="block md:inline md:mr-8"
+            >
+              <FontAwesomeIcon
+                className="mr-2"
+                icon={faClock}
+              />
+              {`${postY}年${postM}月${postD}日`}
+            </time>
 
-              <time
-                dateTime={post?.frontmatter?.update!}
-              >
-                <FontAwesomeIcon
-                  className="mr-2"
-                  icon={faRedo}
-                />
-                {`${updateY}年${updateM}月${updateD}日`}
-              </time>
+            <time
+              dateTime={post?.frontmatter?.update!}
+            >
+              <FontAwesomeIcon
+                className="mr-2"
+                icon={faRedo}
+              />
+              {`${updateY}年${updateM}月${updateD}日`}
+            </time>
 
-              <ul className="flex gap-4 mt-4">
-                {post?.frontmatter?.tags?.map((tag) => (
-                  <li key={`${tag}`}>
-                    <Link to={`/tag/${tag}/page/1/`}>
-                      <FontAwesomeIcon
-                        className="mr-2"
-                        icon={faTag}
-                      />
-                      {tag}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </header>
+            <ul className="flex gap-4 mt-4">
+              {post?.frontmatter?.tags?.map((tag) => (
+                <li key={`${tag}`}>
+                  <Link to={`/tag/${tag}/page/1/`}>
+                    <FontAwesomeIcon
+                      className="mr-2"
+                      icon={faTag}
+                    />
+                    {tag}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </header>
 
-          <section
-            className={Styles.test}
-            dangerouslySetInnerHTML={{ __html: post!.html! }}
-            itemProp="articleBody"
-          />
-        </main>
+        <main
+          className={Styles.test}
+          dangerouslySetInnerHTML={{ __html: post!.html! }}
+          itemProp="articleBody"
+        />
 
         <nav className="mt-20">
           <ul
