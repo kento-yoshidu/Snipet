@@ -2777,6 +2777,15 @@ type BlogPostBySlugQueryVariables = Exact<{
 
 type BlogPostBySlugQuery = { readonly markdownRemark: { readonly html: string | null, readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly update: string | null, readonly description: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly icon: string | null } | null } | null, readonly previous: { readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly title: string | null } | null } | null, readonly next: { readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly title: string | null } | null } | null };
 
+type TagQueryVariables = Exact<{
+  tag: Scalars['String'];
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+}>;
+
+
+type TagQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly update: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly icon: string | null } | null }> } };
+
 type TagsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
