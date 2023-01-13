@@ -14,10 +14,10 @@ icon: "🧸"
 `Array.prototype.map()`を使用することで配列の各要素を取り出し、数値に変換し返すことができます。
 
 ```js
-["0", "1", "2"].map(Number)
+["0", "1", "2"].map(Number);
 //=> [0, 1, 2]
 
-["1.2", "0.2", "3.0"].map(Number)
+["1.2", "0.2", "3.0"].map(Number);
 //=> [ 1.2, 0.2, 3 ]
 ```
 
@@ -27,15 +27,15 @@ icon: "🧸"
 
 ```js
 // 数値型から文字列型への変換
-console.log([0, 1, 2].map(String))
+console.log([0, 1, 2].map(String));
 //=> [ '0', '1', '2' ]
 
 // 数値型から真偽値型への変換
-console.log([1, 2, 3].map(Boolean))
+console.log([1, 2, 3].map(Boolean));
 //=> [ true, true, true ]
 
 // 数値型からBigInt型への変換
-console.log([0, 1, 2].map(BigInt))
+console.log([0, 1, 2].map(BigInt));
 //=> [ 0n, 1n, 2n ]
 ```
 
@@ -44,11 +44,11 @@ console.log([0, 1, 2].map(BigInt))
 `map`は値を返し新たな配列を生成するので、元の配列を変更することはありません。
 
 ```js
-const array = [1, 2, 3]
+const array = [1, 2, 3];
 
-const newArray = array.map(String)
+const newArray = array.map(String);
 
-console.log(array, newArray)
+console.log(array, newArray);
 //=> [ 1, 2, 3 ] [ '1', '2', '3' ]
 ```
 
@@ -57,9 +57,9 @@ console.log(array, newArray)
 例えば2次元配列を考えます。2次元配列を上記のように単純にマップにかけるだけでは思った通りの出力になりません。
 
 ```js
-const array = [[1, 2, 3], 4]
+const array = [[1, 2, 3], 4];
 
-console.log(array.map(String))
+console.log(array.map(String));
 //=> [ '1', '2,3,4' ]
 ```
 
@@ -72,15 +72,15 @@ console.log(array.map(String))
 ```js
 const func = (args) => {
   return args.map((arg) => {
-    return (arg instanceof Array) ? func(arg) : String(arg)
-  })
-}
+    return (arg instanceof Array) ? func(arg) : String(arg);
+  });
+};
 
-const array = [[1, 2, 3], 4]
+const array = [[1, 2, 3], 4];
 
-const newArray = func(array)
+const newArray = func(array);
 
-console.log(newArray)
+console.log(newArray);
 //=> [ [ '1', '2', '3' ], [ '4', [ '5', '6', '7' ] ] ]
 ```
 
@@ -89,10 +89,10 @@ console.log(newArray)
 [instanceof | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/instanceof)
 
 ```js
-console.log([1, 2, 3] instanceof Array)
+console.log([1, 2, 3] instanceof Array);
 //=> true
 
-console.log(4 instanceof Array)
+console.log(4 instanceof Array);
 //=> false
 ```
 
@@ -101,18 +101,18 @@ console.log(4 instanceof Array)
 ```js
 const func = (args) => {
   return args.map((arg) => {
-    return (arg instanceof Array) ? func(arg) : String(arg)
-  })
-}
+    return (arg instanceof Array) ? func(arg) : String(arg);
+  });
+};
 
 const array = [
   [1, 2, 3],
   [4, 5, 6, [7, 8, 9]]
-]
+];
 
-const newArray = func(array)
+const newArray = func(array);
 
-console.log(newArray)
+console.log(newArray);
 //=> [ [ '1', '2', '3' ], [ '4', '5', '6', [ '7', '8', '9' ] ] ]
 ```
 

@@ -1,0 +1,45 @@
+.test {
+  margin-top: 50px;
+  color: #444;
+}
+  
+.test h1 {
+  margin-bottom: 30px;
+  border-bottom: 5px solid #444;
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
+}
+
+.test h2 {
+  margin: 50px 0 30px;
+  padding-left: 10px;
+  border-left: 8px solid #444;;
+  font-size: clamp(1.1rem, 2.5vw, 2rem);
+}
+
+.test p {
+  margin-bottom: 15px;
+  font-size: clamp(0.9rem, 1.5vw, 1.12rem);
+  line-height: 1.75;
+}
+
+.test pre {
+  margin: 30px 0 40px;
+}
+
+.test a {
+  color: #0000ee;
+}
+
+.test a:hover {
+  color: rgba(0, 0, 242, 0.6);
+}
+
+@media (width < 768px) {
+  .test p {
+    line-height: 1.5;
+  } 
+
+  .test pre {
+    font-size: 0.85rem;
+  }
+}
