@@ -4,7 +4,7 @@ import { Link, graphql, PageProps } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-import * as Styles from "../styles/markdown.module.scss"
+import * as Styles from "../styles/markdown.module.css"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClock, faRedo, faTag, faCode } from "@fortawesome/free-solid-svg-icons"
