@@ -1,0 +1,22 @@
+.test {
+  margin-top: 50px;
+  color: #444;
+}
+  
+.test h1 {
+  margin-bottom: 30px;
+  border-bottom: 5px solid #444;
+  font-size: clamp(1.2rem, 3.5vw, 2.5rem);
+}
+
+.test p {
+  margin-bottom: 10px;
+  line-height: 1.75;
+}
+
+.test h2 {
+  margin-bottom: 30px;
+  padding-left: 1rem;
+  border-left: 7px solid #444;
+  font-size: clamp(1.1rem, 3vw, 2.2rem);
+}

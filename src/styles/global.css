@@ -21,3 +21,7 @@ a {
 a:hover {
   color: #666;
 }
+
+.gatsby-highlight {
+  margin: 20px 0 50px;
+}
