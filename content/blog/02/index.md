@@ -4,7 +4,7 @@ postdate: "2023-01-01"
 update: "2023-01-13"
 description: "配列の要素の型を変換します。"
 tags: ["JavaScript", "型", "配列"]
-icon: "🧸"
+icon: "🦎"
 ---
 
 # 文字列の配列を数値の配列に変換する
