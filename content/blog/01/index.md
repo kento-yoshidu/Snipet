@@ -1,75 +1,116 @@
 ---
-title: "[Rust] 文字列を逆に並べる"
-postdate: "2023-06-03"
-update: "2023-06-03"
-description: "Hello World"
-tags: ["Rust", "文字列", "文字列操作"]
-icon: "🧸"
+title: "【JS】型Tの配列を型Uの配列に変換する"
+postdate: "2023-01-01"
+update: "2023-01-13"
+description: "配列の要素の型を変換します。"
+tags: ["JavaScript", "型", "配列"]
+icon: "🦎"
 ---
 
-# 文字列を逆に並べる
+# 文字列の配列を数値の配列に変換する
 
-与えられた文字列を後ろから並べなおします。`chars()`を使用することでイテレーターが返ってくるので、`rev()`で逆に並べ、`collect()`で`String`として結合します。
+`["0", "1", "2"]`のように、文字列が格納されている配列について、各要素を数値に変換する方法を考えます。
 
-```rust
-fn main() {
-    let s = String::from("Hello World");
+`Array.prototype.map()`を使用することで配列の各要素を取り出し、数値に変換し返すことができます。
 
-    println!("{}", s.chars().rev().collect::<String>());
-    //=> dlroW olleH
-}
+```js
+["0", "1", "2"].map(Number)
+//=> [0, 1, 2]
+
+["1.2", "0.2", "3.0"].map(Number)
+//=> [ 1.2, 0.2, 3 ]
 ```
 
-3バイト文字が混じっていてもちゃんと扱えます。
+## 他の型への変換も
 
-```rust
-fn main() {
-    let s = String::from("こんにちは Hello");
-    
-    println!("{}", s.chars().rev().collect::<String>());
-    //=> olleH はちにんこ
-}
+この要領で様々な型への変換を行うこともできます。
+
+```js
+// 数値型から文字列型への変換
+console.log([0, 1, 2].map(String))
+//=> [ '0', '1', '2' ]
+
+// 数値型から真偽値型への変換
+console.log([1, 2, 3].map(Boolean))
+//=> [ true, true, true ]
+
+// 数値型からBigInt型への変換
+console.log([0, 1, 2].map(BigInt))
+//=> [ 0n, 1n, 2n ]
 ```
 
-`String`型だけではなく、`&str`も同様の方法で並べ替えることができます。
+## mapは新たな配列を生成する
 
-```rust
-fn main() {
-    let s2 = "文字列スライス";
-    
-    println!("{}", s2.chars().rev().collect::<String>());
-    //=> スイラス列字文
-}
+`map`は値を返し新たな配列を生成するので、元の配列を変更することはありません。
+
+```js
+const array = [1, 2, 3]
+
+const newArray = array.map(String)
+
+console.log(array, newArray)
+//=> [ 1, 2, 3 ] [ '1', '2', '3' ]
 ```
 
-ただし、`&str`を返すことはできません。`collect()`が扱えるのは`FromIterator`トレイトが実装されている型のみです。`String`には実装されていますが、`&str`には実装されていません。
+## n次元の配列の要素を任意の型に変換する
 
-```rust
-fn main() {
-    let s = "文字列スライス";
-    
-    println!("🦀❌ {}", s.chars().rev().collect::<&str>());
-    /*
-        error[E0277]: a value of type `&str` cannot be built from an iterator over elements of type `char`
-        --> src/main.rs:4:36
-        |
-        4 |     println!("{}", s.chars().rev().collect::<&str>());
-        |                                    ^^^^^^^ value of type `&str` cannot be built from `std::iter::Iterator<Item=char>`
-        |
-        = help: the trait `FromIterator<char>` is not implemented for `&str`
-        = help: the following other types implement trait `FromIterator<A>`:
-                    <String as FromIterator<&'a char>>
-                    <String as FromIterator<&'a str>>
-                    <String as FromIterator<Box<str>>>
-                    <String as FromIterator<Cow<'a, str>>>
-                    <String as FromIterator<String>>
-                    <String as FromIterator<char>>
-    */
-}
+例えば2次元配列を考えます。2次元配列を上記のように単純にマップにかけるだけでは思った通りの出力になりません。
+
+```js
+const array = [[1, 2, 3], 4]
+
+console.log(array.map(String))
+//=> [ '1', '2,3,4' ]
 ```
 
-## 参考
+`'4'`は思った通りに文字列型に変換されていますが、`[1, 2, 3]`がまとめて`1,2,3`という風に一つの文字列として括られてしまっています。
 
-[FromIterator in std::iter - Rust](https://doc.rust-lang.org/std/iter/trait.FromIterator.html)
+多次元配列の型変換に関しては、以下のページを参考に再帰関数を定義して実装しました。
 
-[rust - 文字列に対するcollectの型処理について - スタック・オーバーフロー](https://ja.stackoverflow.com/questions/67806/%E6%96%87%E5%AD%97%E5%88%97%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8Bcollect%E3%81%AE%E5%9E%8B%E5%87%A6%E7%90%86%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
+[JSの多次元配列の要素全てを文字列から数値に変換する方法](https://teratail.com/questions/334737)
+
+```js
+const func = (args) => {
+  return args.map((arg) => {
+    return (arg instanceof Array) ? func(arg) : String(arg)
+  })
+}
+
+const array = [[1, 2, 3], 4]
+
+const newArray = func(array)
+
+console.log(newArray)
+//=> [ [ '1', '2', '3' ], [ '4', [ '5', '6', '7' ] ] ]
+```
+
+`instanceof`演算子は、左オペランドの値が右オペランドのオブジェクトから生成されたものかどうかを判定します。
+
+[instanceof | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/instanceof)
+
+```js
+console.log([1, 2, 3] instanceof Array)
+//=> true
+
+console.log(4 instanceof Array)
+//=> false
+```
+
+多次元配列を`map`で回し、要素が配列だった場合は再度`func`関数に渡し、要素が配列でなかった場合は`String()`で文字列に変換します。せっかくなので3次元配列でテストしてみました。
+
+```js
+const func = (args) => {
+  return args.map((arg) => {
+    return (arg instanceof Array) ? func(arg) : String(arg)
+  })
+
+const array = [
+  [1, 2, 3],
+  [4, 5, 6, [7, 8, 9]]
+]
+
+const newArray = func(array)
+
+console.log(newArray)
+//=> [ [ '1', '2', '3' ], [ '4', '5', '6', [ '7', '8', '9' ] ] ]
+```
